@@ -9,7 +9,6 @@ import { Advertisement } from '../model/advertisement.model';
 export class AdvertisementService {
 
   advertisementsChanged = new Subject<Advertisement[]>();
-
   advertisements = [
     new Advertisement(1, 'Angular Developer', 'Google', 'We are looking for an Angular Developer', 'https://www.google.com', [
       { id: 1, name: 'Angular' },
@@ -22,7 +21,7 @@ export class AdvertisementService {
     new Advertisement(3, 'Vue Developer', 'Facebook', 'We are looking for a Vue Developer', 'https://www.google.com', [
       { id: 5, name: 'Vue' },
       { id: 6, name: 'JavaScript' },
-    ], true, new Date(2024, 10, 9), true),
+    ], true, new Date(2024, 10, 9), true)
   ];
 
   getAdvertisements() {
@@ -39,6 +38,23 @@ export class AdvertisementService {
 
     let index = this.advertisements.findIndex(a => a.id === advertisement.id);
     this.advertisements[index] = advertisement;
+    this.advertisementsChanged.next(this.getAdvertisements());
+  }
+
+  deleteAdvertisement(id: number) {
+    let index = this.advertisements.findIndex(a => a.id === id);
+    this.advertisements.splice(index, 1);
+    this.advertisementsChanged.next(this.getAdvertisements());
+  }
+
+  saveAdvertisement(advertisement: Advertisement) {
+    if (advertisement.id) {
+      let index = this.advertisements.findIndex(a => a.id === advertisement.id);
+      this.advertisements[index] = advertisement;
+    } else {
+      advertisement.id = this.advertisements.length + 1;
+      this.advertisements.push(advertisement);
+    }
     this.advertisementsChanged.next(this.getAdvertisements());
   }
 }

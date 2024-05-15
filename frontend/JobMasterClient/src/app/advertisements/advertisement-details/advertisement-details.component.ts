@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../model/advertisement.model';
@@ -8,7 +8,7 @@ import { Advertisement } from '../model/advertisement.model';
 @Component({
   selector: 'app-advertisement-details',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './advertisement-details.component.html',
   styleUrl: './advertisement-details.component.css'
 })
@@ -37,7 +37,7 @@ export class AdvertisementDetailsComponent implements OnInit {
     this.router.navigate(['advertisements', this.advertisement.id, 'edit']);
   }
 
-  onDelete() {
-
+  onApply() {
+    this.advertisementService.apply(this.advertisement);
   }
 }

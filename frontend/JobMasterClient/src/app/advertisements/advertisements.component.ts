@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 import { AdvertisementEditComponent } from './advertisement-edit/advertisement-edit.component';
 import { AdvertisementListComponent } from './advertisement-list/advertisement-list.component';
@@ -13,11 +13,4 @@ import { AdvertisementListComponent } from './advertisement-list/advertisement-l
 })
 export class AdvertisementsComponent {
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router) { }
-
-  onAddAdvertisement() {
-    this.router.navigate(['new'], { relativeTo: this.route });
-  }
 }

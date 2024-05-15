@@ -1,3 +1,9 @@
-<div class="col">
-    <app-advertisement-item *ngFor="let advertisement of advertisements" [advertisement]="advertisement"></app-advertisement-item>
+<div class="col mb-2">
+    <app-advertisement-item *ngFor="let advertisement of advertisements" [advertisement]="advertisement">
+    </app-advertisement-item>
+</div>
+<div class="row justify-content-end">
+    <div class="col-auto">
+        <button class="btn btn-primary" (click)="onAddAdvertisement()">Dodaj ogłoszenie</button>
+    </div>
 </div>
