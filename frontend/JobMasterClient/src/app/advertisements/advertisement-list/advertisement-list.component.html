@@ -1,26 +1,3 @@
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nazwa</th>
-            <th scope="col">Opis</th>
-            <th scope="col">Aplikowano</th>
-            <th scope="col">Data</th>
-            <th scope="col">Odrzucono</th>
-            <th scope="col">Akcje</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let advertisement of advertisements; let i = index">
-            <th scope="row">{{i + 1}}</th>
-            <td>{{advertisement.title}}</td>
-            <td>{{advertisement.description | truncate:25}}</td>
-            <td>{{advertisement.applied | yesno}}</td>
-            <td>{{advertisement.applyDate | date:'dd-MM-YYY'}}</td>
-            <td>{{advertisement.rejected | yesno}}</td>
-            <td>
-                <button class="btn btn-secondary" style="margin-right: 5px;" (click)="onMore(advertisement.id)">Więcej</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="col">
+    <app-advertisement-item *ngFor="let advertisement of advertisements" [advertisement]="advertisement"></app-advertisement-item>
+</div>

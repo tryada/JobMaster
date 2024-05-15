@@ -1,33 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { DatePipe, NgFor } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../model/advertisement.model';
-import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
-import { YesNoPipe } from '../../shared/pipes/yes-no.pipe';
-import { Router } from '@angular/router';
+import { AdvertisementItemComponent } from './advertisement-item/advertisement-item.component';
 
 @Component({
   selector: 'app-advertisement-list',
   standalone: true,
-  imports: [NgFor, DatePipe, TruncatePipe, YesNoPipe],
+  imports: [NgFor, AdvertisementItemComponent],
   templateUrl: './advertisement-list.component.html',
   styleUrl: './advertisement-list.component.css'
 })
-export class AdvertisementListComponent implements OnInit {
+export class AdvertisementListComponent implements OnInit, OnDestroy {
+
+  subscription: Subscription;
 
   constructor(
     private advertisementService: AdvertisementService,
-    private router: Router
   ) { }
 
   advertisements: Advertisement[]
 
   ngOnInit(): void {
     this.advertisements = this.advertisementService.getAdvertisements();
+    this.subscription = this.advertisementService.advertisementsChanged.subscribe((advertisements: Advertisement[]) => {
+      this.advertisements = advertisements;
+    });
   }
 
-  onMore(id: number) {
-    this.router.navigate(['advertisements', id]);
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

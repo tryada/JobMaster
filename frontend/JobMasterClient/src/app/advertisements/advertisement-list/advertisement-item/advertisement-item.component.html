@@ -1,0 +1,21 @@
+<div class="card mb-2">
+    <div class="card-header">{{advertisement.title}}</div>
+    <div class="card-header">{{advertisement.companyName}}</div>
+    <div class="card-body">
+        <div class="card-text">{{advertisement.description | truncate:150}}</div>
+    </div>
+    <div class="card-footer" *ngIf="advertisement.applied">
+        <div class="alert alert-success" *ngIf="advertisement.applied && !advertisement.rejected">
+            Aplikowano: {{advertisement.appliedDate | date:'dd-MM-YYY'}}
+        </div>
+        <div class="alert alert-danger" *ngIf="advertisement.rejected">
+            Odrzucono
+        </div>
+    </div>
+    <div class="card-footer text-end">
+        <button class="btn btn-warning" style="margin-right: 5px;" (click)="onEdit()">Edytuj</button>
+        <button [disabled]="advertisement.applied" class="btn btn-success" style="margin-right: 5px;"
+            (click)="onApply()">Aplikuj</button>
+        <button class="btn btn-secondary" style="margin-right: 5px;" (click)="onMore()">Więcej</button>
+    </div>
+</div>

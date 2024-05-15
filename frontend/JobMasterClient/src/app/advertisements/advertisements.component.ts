@@ -20,5 +20,4 @@ export class AdvertisementsComponent {
   onAddAdvertisement() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
-
 }
