@@ -11,3 +11,4 @@ Wykorzystane technologie:
 * Wyświetlanie ogłoszeń na liście
 * Oznaczanie ogłoszeń, do których wysłano aplikacje
 * Oznaczanie ogłoszeń, które zostały odrzucone przez pracodawców
+* Możliwość otwarcia strony internetowej z ogłoszeniem
