@@ -14,6 +14,29 @@
                 <textarea type="text" class="form-control" id="description" rows="5"
                     formControlName="description"></textarea>
             </div>
+            <div class="col mb-3">
+                <div class="row" formArrayName="skills">
+                    <label class="form-label">Umiejętności</label>
+                    <div class="form-group" *ngFor="let skill of skillsControls; let i = index"
+                        style="margin-bottom: 5px;">
+                        <div class="row">
+                            <div class="col-10">
+                                <input class="form-control" type="text" [formControlName]="i">
+                            </div>
+                            <div class="col-2">
+                                <button type="button" class="btn btn-danger" (click)="onDeleteSkil(i)">Usuń</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-primary" (click)="onNewSkill()">Dodaj umiejętność</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="mb-3">
                 <label for="url" class="form-label">URL</label>
                 <input type="text" class="form-control" id="url" formControlName="url">
@@ -30,28 +53,6 @@
                 <div class="col-1"></div>
                 <div class="col mb-3">
                     <input type="date" class="form-control" formControlName="appliedDate">
-                </div>
-            </div>
-            <div class="col mb-3">
-                <div class="row" formArrayName="skills">
-                    <label class="form-label">Umiejętności</label>
-                    <div class="form-group" *ngFor="let skill of skillsControls; let i = index"
-                        style="margin-bottom: 5px;">
-                        <div class="row">
-                            <div class="col-10">
-                                <input class="form-control" type="text" [formControlName]="i">
-                            </div>
-                            <div class="col-2">
-                                <button type="button" class="btn btn-danger" (click)="onDeleteSkil(i)">Usuń</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-primary" (click)="onNewSkill()">Dodaj
-                                umiejętność</button>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="mb-3">

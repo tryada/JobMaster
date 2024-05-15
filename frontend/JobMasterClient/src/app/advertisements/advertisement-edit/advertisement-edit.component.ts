@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -62,7 +62,7 @@ export class AdvertisementEditComponent implements OnInit {
         ),
         'url': this.editModel.url,
         'applied': this.editModel.applied,
-        'appliedDate': this.editModel.appliedDate,
+        'appliedDate': this.editModel.appliedDate ? formatDate(this.editModel.appliedDate, 'yyyy-MM-dd', 'en-US') : '',
         'rejected': this.editModel.rejected
       }
     } else {
