@@ -1,1 +1,15 @@
-<p>advertisements works!</p>
+<div class="row" style="margin-top: 15px;">
+    <div class="col-8">
+        <app-advertisement-list></app-advertisement-list>
+        <div class="row justify-content-end">
+            <div class="col-auto">
+                <button class="btn btn-primary" (click)="onAddAdvertisement()">Dodaj ogłoszenie</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="row" style="margin-top: 15px;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

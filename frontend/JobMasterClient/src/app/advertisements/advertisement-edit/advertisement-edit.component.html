@@ -1,0 +1,50 @@
+<form (ngSubmit)="onSubmit()">
+    <div class="row" style="max-width: 500px;">
+        <div class="col">
+            <div class="mb-3">
+                <label for="title" class="form-label">Nazwa</label>
+                <input type="email" class="form-control" id="title">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Opis</label>
+                <textarea type="text" class="form-control" id="description" rows="5"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="url" class="form-label">URL</label>
+                <input type="text" class="form-control" id="url">
+            </div>
+            <div class="mb-3">
+
+            </div>
+            <div class="row align-items-center">
+                <div class="col-4 mb-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="applied">
+                        <label class="form-check-label" for="applied">Aplikowano</label>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <input type="date" class="form-control" id="applyDate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-3">
+                <label for="url" class="form-label">Umiejętności</label>
+            </div>
+            <div class="mb-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="rejected">
+                    <label class="form-check-label" for="rejected">Odrzucono</label>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">{{editMode ? 'Zapisz' : 'Dodaj'}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

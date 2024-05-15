@@ -1,4 +1,8 @@
 .active {
-    background-color: gainsboro;
+    background-color: white;
     border-radius: 10px;
+}
+
+.active a {
+    color: black;
 }

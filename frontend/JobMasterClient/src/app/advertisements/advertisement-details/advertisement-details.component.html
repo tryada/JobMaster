@@ -1,0 +1,17 @@
+<div class="card text-center">
+    <div class="card-header">
+        {{ advertisement.title }}
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ advertisement.description }}</p>
+
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let skill of advertisement.skills">{{ skill.name }}</li>
+      </ul>
+    <div class="card-footer text-body-secondary">
+        <button class="btn btn-primary" style="margin-right: 5px;" (click)="onOpen()">Otwórz</button>
+        <button class="btn btn-warning" style="margin-left: 5px; margin-right: 5px;" (click)="onEdit()">Edytuj</button>
+        <button class="btn btn-danger" style="margin-left: 5px;" (click)="onDelete()">Usuń</button>
+    </div>
+</div>
