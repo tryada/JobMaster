@@ -1,0 +1,19 @@
+# Api
+/src/JobMaster.Api/bin
+/src/JobMaster.Api/obj
+
+# Application
+/src/JobMaster.Application/bin
+/src/JobMaster.Application/obj
+
+# Contracts
+/src/JobMaster.Contracts/bin
+/src/JobMaster.Contracts/obj
+
+# Infrastructure
+/src/JobMaster.Infrastructure/bin
+/src/JobMaster.Infrastructure/obj
+
+# Domain
+/src/JobMaster.Domain/bin
+/src/JobMaster.Domain/obj

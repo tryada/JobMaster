@@ -1,7 +1,12 @@
 {
 	"folders": [
-		{ "path": "..", },
-		{ "path": "..\\frontend\\JobMasterClient", }
+		{ "path": "..", "name": ".workspace" },
+		{ "path": "..\\frontend\\JobMasterClient" },
+		{ "path": "..\\backend\\src\\JobMaster.Api" },
+		{ "path": "..\\backend\\src\\JobMaster.Application" },
+		{ "path": "..\\backend\\src\\JobMaster.Contracts" },
+		{ "path": "..\\backend\\src\\JobMaster.Domain" },
+		{ "path": "..\\backend\\src\\JobMaster.Infrastructure" },
 	],
 	"settings": {}
 }

@@ -5,6 +5,7 @@ Aplikacja wspomagająca szukanie pracy.
 
 Wykorzystane technologie:
 * Angular
+* .NET Core
 
 ### Funkcjonalności:
 * Dodawanie/ edycja/ usuwanie ogłoszeń
