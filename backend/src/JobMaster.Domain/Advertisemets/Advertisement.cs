@@ -1,6 +1,6 @@
 namespace JobMaster.Domain.Advertisements;
 
-public class Advertisement 
+public partial class Advertisement 
 {
     public Guid Id { get; private set; }
     public string Title { get; private set; }
@@ -12,7 +12,8 @@ public class Advertisement
     public DateTime AppliedDate { get; private set; }
     public bool Rejected { get; private set; }
     
-    public Advertisement(
+    private Advertisement(
+        Guid id,
         string title,
         string companyName,
         string description,
@@ -22,7 +23,7 @@ public class Advertisement
         DateTime appliedDate,
         bool rejected)
     {
-        Id = Guid.NewGuid();
+        Id = id;
         Title = title;
         CompanyName = companyName;
         Description = description;

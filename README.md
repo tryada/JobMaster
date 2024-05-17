@@ -16,7 +16,7 @@ Aplikacja wspomagająca szukanie pracy.
 
 ## Backend
 ### Funkcjonalności:
-* Dodawanie/ pobieranie ogłoszeń
+* Dodawanie/ pobieranie/ edycja/ usuwanie ogłoszeń
 * Dodawanie/ pobieranie umiejętności
 #### Wykorzystane techonolgie:
 * .NET Core 8.0
@@ -24,4 +24,3 @@ Aplikacja wspomagająca szukanie pracy.
 * Swashbuckle.AspNetCore
 * MediatR
 * Mapster
-

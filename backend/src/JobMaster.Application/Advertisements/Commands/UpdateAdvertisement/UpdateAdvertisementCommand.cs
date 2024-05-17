@@ -1,12 +1,13 @@
 using JobMaster.Domain.Advertisements;
 using MediatR;
 
-namespace JobMaster.Application.Advertisements.Commands.CreateAdvertisement;
+namespace JobMaster.Application.Advertisements.Commands.UpdateAdvertisement;
 
-public record CreateAdvertisementCommand(
-    string Title, 
-    string Description, 
+public record UpdateAdvertisementCommand(
+    Guid Id,
+    string Title,
     string CompanyName,
+    string Description,
     List<Guid> Skills,
     string Url,
     bool Applied,

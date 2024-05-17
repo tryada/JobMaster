@@ -15,11 +15,11 @@ public class CreateAdvertisementCommandHandler : IRequestHandler<CreateAdvertise
 
     public Task<Advertisement> Handle(CreateAdvertisementCommand request, CancellationToken cancellationToken)
     {
-        var advertisement = new Advertisement(
+        var advertisement = Advertisement.Create(
             request.Title,
             request.Description,
             request.CompanyName,
-            [.. request.Skills],
+            request.Skills,
             request.Url,
             request.Applied,
             request.AppliedDate,

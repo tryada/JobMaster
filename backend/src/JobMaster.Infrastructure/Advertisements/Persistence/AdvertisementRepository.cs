@@ -7,7 +7,7 @@ public class AdvertisementRepository : IAdvertisementRepository
 {
     private static readonly List<Advertisement> advertisements =
     [
-        new(
+        Advertisement.Create(
             "Software Engineer",
             "Google",
             "Software Engineer at Google",
@@ -17,7 +17,7 @@ public class AdvertisementRepository : IAdvertisementRepository
             DateTime.Now,
             false
         ),
-        new(
+        Advertisement.Create(
             "Software Engineer",
             "Facebook",
             "Software Engineer at Facebook",
@@ -27,7 +27,7 @@ public class AdvertisementRepository : IAdvertisementRepository
             DateTime.Now,
             false
         ),
-        new(
+        Advertisement.Create(
             "Software Engineer",
             "Amazon",
             "Software Engineer at Amazon",
@@ -38,6 +38,11 @@ public class AdvertisementRepository : IAdvertisementRepository
             false
         )
     ];
+
+    public async Task<Advertisement> GetByIdAsync(Guid id)
+    {
+        return await Task.FromResult(advertisements.FirstOrDefault(x => x.Id == id));
+    }
 
     public async Task<List<Advertisement>> GetAllAsync()
     {
