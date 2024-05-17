@@ -1,7 +1,13 @@
+using JobMaster.Api;
+using JobMaster.Application;
+using JobMaster.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    builder.Services
+        .AddApi()
+        .AddApplication()
+        .AddInfrastructure();
 }
 
 var app = builder.Build();
@@ -14,5 +20,6 @@ var app = builder.Build();
     }
 
     app.UseHttpsRedirection();
+    app.MapControllers();
     app.Run();
 }
