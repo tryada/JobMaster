@@ -23,5 +23,5 @@ Aplikacja wspomagająca szukanie pracy.
 ##### Biblioteki:
 * Swashbuckle.AspNetCore
 * MediatR
-
+* Mapster
 
