@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="advertisementForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="advertisementForm" *ngIf="!invalidData; else error">
     <div class="row" style="max-width: 500px;">
         <div class="col">
             <div class="mb-3">
@@ -15,13 +15,15 @@
                     formControlName="description"></textarea>
             </div>
             <div class="col mb-3">
-                <div class="row" formArrayName="skills">
+                <div class="row" formArrayName="skills" *ngIf="skills.length > 0" >
                     <label class="form-label">Umiejętności</label>
                     <div class="form-group" *ngFor="let skill of skillsControls; let i = index"
                         style="margin-bottom: 5px;">
                         <div class="row">
                             <div class="col-10">
-                                <input class="form-control" type="text" [formControlName]="i">
+                                <select class="form-control" [formControlName]="i">
+                                    <option *ngFor="let skill of skills" [value]="skill.id">{{ skill.name }}</option>
+                                </select>
                             </div>
                             <div class="col-2">
                                 <button type="button" class="btn btn-danger" (click)="onDeleteSkil(i)">Usuń</button>
@@ -32,7 +34,7 @@
                         <div class="row justify-content-center">
                             <div class="col-auto">
                                 <button type="button" class="btn btn-primary" (click)="onNewSkill()">Dodaj umiejętność</button>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                 </div>
@@ -71,3 +73,6 @@
         </div>
     </div>
 </form>
+<ng-template #error>
+    <app-advertisement-error></app-advertisement-error> 
+</ng-template>

@@ -11,7 +11,9 @@ public class AdvertisementRepository : IAdvertisementRepository
             "Software Engineer",
             "Google",
             "Software Engineer at Google",
-            [Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid()],
+            [
+                new Guid("b162b6c1-1572-48ee-8914-7da769335203"), 
+            ],
             "https://google.com",
             false,
             DateTime.Now,
@@ -21,7 +23,11 @@ public class AdvertisementRepository : IAdvertisementRepository
             "Software Engineer",
             "Facebook",
             "Software Engineer at Facebook",
-            [Guid.NewGuid()],
+            [
+                new Guid("4f99f6e4-0d5b-4c8a-969a-2ace320a3f4a"),
+                new Guid("b0a22d32-9d12-4920-a8ee-cae37255adb8"),
+                new Guid("0ac99392-29e7-45c0-8a3e-4379a58220ab")
+            ],
             "https://facebook.com",
             false,
             DateTime.Now,
@@ -31,7 +37,10 @@ public class AdvertisementRepository : IAdvertisementRepository
             "Software Engineer",
             "Amazon",
             "Software Engineer at Amazon",
-            [Guid.NewGuid(), Guid.NewGuid()],
+            [
+                new Guid("4f99f6e4-0d5b-4c8a-969a-2ace320a3f4a"), 
+                new Guid("843da3ca-c0cb-4644-9f3d-2ae35dc3762c")
+            ],
             "https://amazon.com",
             false,
             DateTime.Now,

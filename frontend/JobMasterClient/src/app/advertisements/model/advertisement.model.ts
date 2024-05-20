@@ -1,23 +1,21 @@
-import { Skill } from "../../shared/models/skill.model";
-
 export class Advertisement {
-    id: number;
+    id: string;
     title: string;
     companyName: string;
     description: string;
     url: string;
-    skills: Skill[];
+    skills: string[];
     applied: boolean
     appliedDate: Date
     rejected: boolean
 
     constructor(
-        id: number,
+        id: string,
         title: string,
         companyName: string,
         description: string,
         url: string,
-        skills: Skill[],
+        skills: string[],
         applied: boolean,
         applyDate: Date,
         rejected: boolean) {

@@ -1,3 +1,4 @@
+<app-error-info *ngIf="errorMessage" [errorMessage]="errorMessage" (close)="onErrorClose()"></app-error-info>
 <app-header></app-header>
 <div class="container">
   <router-outlet></router-outlet>

@@ -6,19 +6,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Advertisement } from '../model/advertisement.model';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Skill } from '../../shared/models/skill.model';
+import { AdvertisementErrorComponent } from '../advertisement-error/advertisement-error.component';
 
 @Component({
   selector: 'app-advertisement-edit',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgIf, NgFor],
+  imports: [FormsModule, ReactiveFormsModule, NgIf, NgFor, AdvertisementErrorComponent],
   templateUrl: './advertisement-edit.component.html',
   styleUrl: './advertisement-edit.component.css'
 })
 export class AdvertisementEditComponent implements OnInit {
 
+  advertisementForm: FormGroup;
+
   editMode = false;
   editModel: Advertisement;
-  advertisementForm: FormGroup;
+  skills: Skill[];
+  invalidData: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,17 +30,24 @@ export class AdvertisementEditComponent implements OnInit {
     private advertisementService: AdvertisementService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.editMode = params['id'] != null;
-      this.editModel = this.editMode
-        ? this.advertisementService.getAdvertisement(+params['id']) : null;
+    this.route.data.subscribe(data => {
+      this.editModel = data['advertisement'];
+      this.editMode = this.editModel != null;
+      this.skills = data['skills'];
+
+      if (this.editMode)
+        this.invalidData =
+          !this.editModel ||
+          (this.skills.length === 0 && this.editModel.skills.length > 0);
+      else
+        this.invalidData = false;
 
       this.initForm();
     });
   }
 
   private initForm() {
-    var data = this.getFormData();
+    const data = this.getFormData();
     this.advertisementForm = new FormGroup({
       'title': new FormControl(data.title, Validators.required),
       'companyName': new FormControl(data.companyName, Validators.required),
@@ -57,7 +68,7 @@ export class AdvertisementEditComponent implements OnInit {
         'description': this.editModel.description,
         'skills': this.editModel.skills.map(
           (skill) => {
-            return this.createSkillFormGroup(skill.name);
+            return this.createSkillFormGroup(skill);
           }
         ),
         'url': this.editModel.url,
@@ -105,7 +116,7 @@ export class AdvertisementEditComponent implements OnInit {
       this.advertisementForm.value['url'],
       this.getSkills(),
       this.advertisementForm.value['applied'],
-      this.advertisementForm.value['appliedDate'],
+      this.advertisementForm.value['appliedDate'] || null,
       this.advertisementForm.value['rejected']
     );
 
@@ -115,7 +126,7 @@ export class AdvertisementEditComponent implements OnInit {
 
   getSkills() {
     return (<FormArray>this.advertisementForm.get('skills')).controls.map(element => {
-      return new Skill(null, element.value);
+      return element.value;;
     })
   }
 

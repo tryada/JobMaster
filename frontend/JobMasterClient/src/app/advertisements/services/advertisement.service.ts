@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, catchError, concatMap, lastValueFrom, map, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 import { Advertisement } from '../model/advertisement.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,52 +11,54 @@ import { Advertisement } from '../model/advertisement.model';
 export class AdvertisementService {
 
   advertisementsChanged = new Subject<Advertisement[]>();
-  advertisements = [
-    new Advertisement(1, 'Angular Developer', 'Google', 'We are looking for an Angular Developer', 'https://www.google.com', [
-      { id: 1, name: 'Angular' },
-      { id: 2, name: 'TypeScript' },
-    ], false, null, false),
-    new Advertisement(2, 'React Developer', 'Microsoft', 'We are looking for a React Developer', 'https://www.google.com', [
-      { id: 3, name: 'React' },
-      { id: 4, name: 'JavaScript' },
-    ], true, new Date(2024, 9, 1), false),
-    new Advertisement(3, 'Vue Developer', 'Facebook', 'We are looking for a Vue Developer', 'https://www.google.com', [
-      { id: 5, name: 'Vue' },
-      { id: 6, name: 'JavaScript' },
-    ], true, new Date(2024, 10, 9), true)
-  ];
+
+  constructor(private httpClient: HttpClient) { }
 
   getAdvertisements() {
-    return this.advertisements.slice();
+    return this.httpClient
+      .get<Advertisement[]>(environment.apiUrl + 'advertisements')
+      .pipe(
+        map(advertisements => advertisements),
+        catchError(() => of([]))
+      );
   }
 
-  getAdvertisement(id: number) {
-    return this.advertisements.find(a => a.id === id);
+  getAdvertisement(id: string) {
+    return this.httpClient
+      .get<Advertisement>(environment.apiUrl + 'advertisements/' + id)
+      .pipe(
+        map(advertisement => advertisement),
+        catchError(() => {
+          return of(null);
+        })
+      );
   }
 
   apply(advertisement: Advertisement) {
     advertisement.applied = true;
     advertisement.appliedDate = new Date();
-
-    let index = this.advertisements.findIndex(a => a.id === advertisement.id);
-    this.advertisements[index] = advertisement;
-    this.advertisementsChanged.next(this.getAdvertisements());
+    this.saveAdvertisement(advertisement)
   }
 
-  deleteAdvertisement(id: number) {
-    let index = this.advertisements.findIndex(a => a.id === id);
-    this.advertisements.splice(index, 1);
-    this.advertisementsChanged.next(this.getAdvertisements());
+  deleteAdvertisement(id: string) {
+
+    this.httpClient.delete(environment.apiUrl + 'advertisements/' + id)
+      .pipe(
+        concatMap(() => this.getAdvertisements())
+      ).subscribe(advertisements => {
+        this.advertisementsChanged.next(advertisements);
+      });
   }
 
-  saveAdvertisement(advertisement: Advertisement) {
-    if (advertisement.id) {
-      let index = this.advertisements.findIndex(a => a.id === advertisement.id);
-      this.advertisements[index] = advertisement;
+  async saveAdvertisement(advertisement: Advertisement) {
+
+    if (advertisement.id === null) {
+      await lastValueFrom(this.httpClient.post(environment.apiUrl + 'advertisements', advertisement));
     } else {
-      advertisement.id = this.advertisements.length + 1;
-      this.advertisements.push(advertisement);
+      await lastValueFrom(this.httpClient.put(environment.apiUrl + 'advertisements/' + advertisement.id, advertisement));
     }
-    this.advertisementsChanged.next(this.getAdvertisements());
+
+    const advertisements = await lastValueFrom(this.getAdvertisements());
+    this.advertisementsChanged.next(advertisements);
   }
 }

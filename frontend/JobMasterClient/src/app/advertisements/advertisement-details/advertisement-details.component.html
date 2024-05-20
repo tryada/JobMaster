@@ -1,4 +1,4 @@
-<div class="card text-center">
+<div class="card text-center" *ngIf="!invalidData; else noAdvertisement">
     <div class="card-header">
         {{ advertisement.title }}
     </div>
@@ -6,7 +6,8 @@
         <p class="card-text">{{ advertisement.description }}</p>
         <h5 class="card-title">Umiejętności</h5>
         <ul class="list-group" *ngIf="advertisement.skills && advertisement.skills.length > 0">
-            <li class="list-group-item" *ngFor="let skill of advertisement.skills">{{ skill.name }}</li>
+            <li class="list-group-item" *ngFor="let skillId of advertisement.skills">{{ skillId | skillName:skills }}
+            </li>
         </ul>
     </div>
     <div class="card-footer text-body-secondary">
@@ -16,3 +17,6 @@
         <button class="btn btn-warning" (click)="onEdit()">Edytuj</button>
     </div>
 </div>
+<ng-template #noAdvertisement>
+    <app-advertisement-error></app-advertisement-error> 
+</ng-template>
