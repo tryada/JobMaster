@@ -9,7 +9,7 @@ public partial class Advertisement
         List<Guid> skills,
         string url,
         bool applied,
-        DateTime appliedDate,
+        DateTime? appliedDate,
         bool rejected)
     {
         return new Advertisement(

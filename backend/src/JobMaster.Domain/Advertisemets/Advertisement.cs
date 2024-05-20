@@ -9,7 +9,7 @@ public partial class Advertisement
     public List<Guid> Skills { get; private set; }
     public string Url { get; private set; }
     public bool Applied { get; private set; }
-    public DateTime AppliedDate { get; private set; }
+    public DateTime? AppliedDate { get; private set; }
     public bool Rejected { get; private set; }
     
     private Advertisement(
@@ -20,7 +20,7 @@ public partial class Advertisement
         List<Guid> skills,
         string url,
         bool applied,
-        DateTime appliedDate,
+        DateTime? appliedDate,
         bool rejected)
     {
         Id = id;

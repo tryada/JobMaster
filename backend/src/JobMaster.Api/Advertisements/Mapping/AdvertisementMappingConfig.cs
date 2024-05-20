@@ -1,6 +1,7 @@
 using JobMaster.Application.Advertisements.Commands.CreateAdvertisement;
 using JobMaster.Application.Advertisements.Commands.DeleteAdvertisement;
 using JobMaster.Application.Advertisements.Commands.UpdateAdvertisement;
+using JobMaster.Application.Advertisements.Queries.GetAdvertisement;
 using JobMaster.Contracts.Advertisements;
 using JobMaster.Domain.Advertisements;
 using Mapster;
@@ -25,5 +26,8 @@ public class AdvertisementMappingConfig : IRegister
 
         config.ForType<string, DeleteAdvertisementCommand>()
             .MapWith(src => new DeleteAdvertisementCommand(new Guid(src)));
+
+        config.ForType<string, GetAdvertisementQuery>()
+            .MapWith(src => new GetAdvertisementQuery(new Guid(src)));
     }
 }

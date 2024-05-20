@@ -2,6 +2,7 @@ using JobMaster.Api.Common.Controllers;
 using JobMaster.Application.Advertisements.Commands.CreateAdvertisement;
 using JobMaster.Application.Advertisements.Commands.DeleteAdvertisement;
 using JobMaster.Application.Advertisements.Commands.UpdateAdvertisement;
+using JobMaster.Application.Advertisements.Queries.GetAdvertisement;
 using JobMaster.Application.Advertisements.Queries.ListAdvertisements;
 using JobMaster.Contracts.Advertisements;
 using MapsterMapper;
@@ -15,6 +16,16 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper) : Base
 {
     private readonly IMediator _mediator = mediator;
     private readonly IMapper _mapper = mapper;
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(string id)
+    {
+        var query = _mapper.Map<GetAdvertisementQuery>(id);
+        var queryResult = await _mediator.Send(query);
+
+        var result = _mapper.Map<AdvertisementResponse>(queryResult);
+        return Ok(result);
+    }
 
     [HttpGet]
     public async Task<IActionResult> Get()

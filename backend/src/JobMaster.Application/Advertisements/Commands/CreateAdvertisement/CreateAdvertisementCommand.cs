@@ -10,5 +10,5 @@ public record CreateAdvertisementCommand(
     List<Guid> Skills,
     string Url,
     bool Applied,
-    DateTime AppliedDate,
+    DateTime? AppliedDate,
     bool Rejected) : IRequest<Advertisement>;
