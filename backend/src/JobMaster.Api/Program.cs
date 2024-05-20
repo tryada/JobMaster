@@ -1,4 +1,5 @@
 using JobMaster.Api;
+using JobMaster.Api.Common.Cors;
 using JobMaster.Application;
 using JobMaster.Infrastructure;
 
@@ -19,6 +20,7 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
+    app.UseCorsPolicy();
     app.UseHttpsRedirection();
     app.MapControllers();
     app.Run();
