@@ -3,13 +3,13 @@
 Aplikacja wspomagająca szukanie pracy.
 > Projekt jest w trakcie implementacji...
 
-### Frontend
+## Frontend
 #### Technologia
 * Angular
 ##### Biblioteki
 * RxJS
 * Bootstrap
-### Backend
+## Backend
 #### Technologia
 * .NET Core 8.0
 ##### Biblioteki
