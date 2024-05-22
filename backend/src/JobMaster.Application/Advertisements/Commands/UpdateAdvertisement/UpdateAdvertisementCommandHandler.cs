@@ -1,5 +1,6 @@
 using JobMaster.Application.Advertisements.Interfaces.Persistence;
 using JobMaster.Domain.Advertisements;
+using JobMaster.Domain.Advertisements.Errors.Exceptions;
 using MediatR;
 
 namespace JobMaster.Application.Advertisements.Commands.UpdateAdvertisement;
@@ -16,7 +17,7 @@ public class UpdateAdvertisementCommandHandler : IRequestHandler<UpdateAdvertise
     public async Task<Advertisement> Handle(UpdateAdvertisementCommand request, CancellationToken cancellationToken)
     {
         var advertisement = await _advertisementRepository.GetByIdAsync(request.Id) 
-            ?? throw new ArgumentException($"{nameof(Advertisement)}: {request.Id}");
+            ?? throw new AdvertisementNotFoundException(request.Id);
 
         advertisement.Update(
             request.Title,

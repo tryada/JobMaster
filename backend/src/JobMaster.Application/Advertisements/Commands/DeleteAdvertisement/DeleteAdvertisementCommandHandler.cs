@@ -1,5 +1,5 @@
 using JobMaster.Application.Advertisements.Interfaces.Persistence;
-using JobMaster.Domain.Advertisements;
+using JobMaster.Domain.Advertisements.Errors.Exceptions;
 using MediatR;
 
 namespace JobMaster.Application.Advertisements.Commands.DeleteAdvertisement;
@@ -16,7 +16,7 @@ public class DeleteAdvertisementCommandHandler : IRequestHandler<DeleteAdvertise
     public async Task Handle(DeleteAdvertisementCommand request, CancellationToken cancellationToken)
     {
         var advertisement = await _advertisementRepository.GetByIdAsync(request.Id) 
-            ?? throw new ArgumentException($"{nameof(Advertisement)}: {request.Id}");
+            ?? throw new AdvertisementNotFoundException(request.Id);
 
         await _advertisementRepository.DeleteAsync(advertisement);
     }
