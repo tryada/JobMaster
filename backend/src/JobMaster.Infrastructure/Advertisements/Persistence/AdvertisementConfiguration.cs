@@ -30,11 +30,11 @@ public class AdvertisementConfiguration : IEntityTypeConfiguration<Advertisement
             .HasMaxLength(100);
 
         builder.Property(advertisement => advertisement.Description)
-            .HasMaxLength(500);
+            .HasMaxLength(1000);
 
         builder.Property(advertisement => advertisement.Url)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(250);
 
         builder.Property(advertisement => advertisement.Applied)
             .HasDefaultValue(false);
