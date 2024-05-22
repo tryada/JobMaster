@@ -13,5 +13,5 @@ public record UpdateAdvertisementCommand(
     List<SkillId> Skills,
     string Url,
     bool Applied,
-    DateTime AppliedDate,
+    DateTime? AppliedDate,
     bool Rejected) : IRequest<Advertisement>;

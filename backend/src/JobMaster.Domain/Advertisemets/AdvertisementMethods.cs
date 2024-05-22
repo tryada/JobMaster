@@ -31,7 +31,7 @@ public partial class Advertisement
         string description,
         string url,
         bool applied,
-        DateTime appliedDate,
+        DateTime? appliedDate,
         bool rejected)
     {
         Title = title;

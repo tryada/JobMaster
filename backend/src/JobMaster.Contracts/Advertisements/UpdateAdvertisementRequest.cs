@@ -7,6 +7,6 @@ public record UpdateAdvertisementRequest(
     string[] Skills,
     string Url,
     bool Applied,
-    DateTime AppliedDate,
+    DateTime? AppliedDate,
     bool Rejected
 );
