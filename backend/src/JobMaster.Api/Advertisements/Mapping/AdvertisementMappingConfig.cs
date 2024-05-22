@@ -4,6 +4,7 @@ using JobMaster.Application.Advertisements.Commands.UpdateAdvertisement;
 using JobMaster.Application.Advertisements.Queries.GetAdvertisement;
 using JobMaster.Contracts.Advertisements;
 using JobMaster.Domain.Advertisements;
+using JobMaster.Domain.Advertisements.ValueObjects;
 using Mapster;
 
 namespace JobMaster.Api.Advertisements.Mapping;
@@ -25,9 +26,9 @@ public class AdvertisementMappingConfig : IRegister
             .Map(dest => dest, src => src.request);
 
         config.ForType<string, DeleteAdvertisementCommand>()
-            .MapWith(src => new DeleteAdvertisementCommand(new Guid(src)));
+            .MapWith(src => new DeleteAdvertisementCommand((AdvertisementId)new Guid(src)));
 
         config.ForType<string, GetAdvertisementQuery>()
-            .MapWith(src => new GetAdvertisementQuery(new Guid(src)));
+            .MapWith(src => new GetAdvertisementQuery((AdvertisementId)new Guid(src)));
     }
 }

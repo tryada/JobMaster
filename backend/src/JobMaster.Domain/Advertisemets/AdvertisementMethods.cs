@@ -1,3 +1,6 @@
+using JobMaster.Domain.Advertisements.ValueObjects;
+using JobMaster.Domain.Skills.ValueObjects;
+
 namespace JobMaster.Domain.Advertisements;
 
 public partial class Advertisement
@@ -6,18 +9,16 @@ public partial class Advertisement
         string title,
         string companyName,
         string description,
-        List<Guid> skills,
         string url,
         bool applied,
         DateTime? appliedDate,
         bool rejected)
     {
         return new Advertisement(
-            Guid.NewGuid(),
+            AdvertisementId.CreateUnique(),
             title,
             companyName,
             description,
-            skills,
             url,
             applied,
             appliedDate,
@@ -28,7 +29,6 @@ public partial class Advertisement
         string title,
         string companyName,
         string description,
-        List<Guid> skills,
         string url,
         bool applied,
         DateTime appliedDate,
@@ -37,10 +37,20 @@ public partial class Advertisement
         Title = title;
         CompanyName = companyName;
         Description = description;
-        Skills = skills;
         Url = url;
         Applied = applied;
         AppliedDate = appliedDate;
         Rejected = rejected;
+    }
+
+    public void AddSkills(List<SkillId> skillId)
+    {
+        _skills.AddRange(skillId);
+    }
+
+    public void UpdateSkills(List<SkillId> skillId)
+    {
+        _skills.Clear();
+        _skills.AddRange(skillId);
     }
 }

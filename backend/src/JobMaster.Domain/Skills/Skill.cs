@@ -1,13 +1,19 @@
+using JobMaster.Domain.Skills.ValueObjects;
+
 namespace JobMaster.Domain.Skills;
 
-public class Skill
+public partial class Skill
 {
-    public Guid Id { get; private set; }
+    public SkillId Id { get; private set; }
     public string Name { get; private set; }
 
-    public Skill(Guid id, string name)
+    private Skill(SkillId id, string name)
     {
         Id = id;
         Name = name;
+    }
+
+    private Skill()
+    {
     }
 }

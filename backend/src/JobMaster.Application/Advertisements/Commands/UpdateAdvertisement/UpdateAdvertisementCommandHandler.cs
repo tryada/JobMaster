@@ -22,11 +22,12 @@ public class UpdateAdvertisementCommandHandler : IRequestHandler<UpdateAdvertise
             request.Title,
             request.CompanyName,
             request.Description,
-            request.Skills,
             request.Url,
             request.Applied,
             request.AppliedDate,
             request.Rejected);
+
+        advertisement.UpdateSkills(request.Skills);
 
         await _advertisementRepository.UpdateAsync(advertisement);
         return advertisement;

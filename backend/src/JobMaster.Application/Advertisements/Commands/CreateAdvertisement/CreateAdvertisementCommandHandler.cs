@@ -13,20 +13,21 @@ public class CreateAdvertisementCommandHandler : IRequestHandler<CreateAdvertise
         _advertisementRepository = advertisementRepository;
     }
 
-    public Task<Advertisement> Handle(CreateAdvertisementCommand request, CancellationToken cancellationToken)
+    public async Task<Advertisement> Handle(CreateAdvertisementCommand request, CancellationToken cancellationToken)
     {
         var advertisement = Advertisement.Create(
             request.Title,
-            request.Description,
             request.CompanyName,
-            request.Skills,
+            request.Description,
             request.Url,
             request.Applied,
             request.AppliedDate,
             request.Rejected
         );
 
-        _advertisementRepository.AddAsync(advertisement);
-        return Task.FromResult(advertisement);
+        advertisement.AddSkills(request.Skills);
+
+        await _advertisementRepository.AddAsync(advertisement);
+        return advertisement;
     }
 }
