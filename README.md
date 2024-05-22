@@ -16,6 +16,7 @@ Aplikacja wspomagająca szukanie pracy.
 * Swashbuckle.AspNetCore
 * MediatR
 * Mapster
+* EntityFrameworkCore
 
 ## Funkcjonalności
 * Dodawanie/ edycja/ usuwanie ogłoszeń
@@ -23,3 +24,4 @@ Aplikacja wspomagająca szukanie pracy.
 * Oznaczanie ogłoszeń, do których wysłano aplikacje
 * Oznaczanie ogłoszeń, które zostały odrzucone przez pracodawców
 * Możliwość otwarcia strony internetowej z ogłoszeniem
+* Przechowywanie danych w bazie danych
