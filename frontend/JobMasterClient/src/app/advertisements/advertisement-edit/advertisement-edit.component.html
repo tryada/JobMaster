@@ -3,11 +3,16 @@
         <div class="col">
             <div class="mb-3">
                 <label for="title" class="form-label">Nazwa</label>
-                <input type="email" class="form-control" id="title" formControlName="title">
+                <input type="text" class="form-control" id="title" formControlName="title">
+                <span *ngIf="advertisementForm.get('title').invalid && advertisementForm.get('title').touched"
+                    class="text-danger">Nazwa jest wymagana</span>
             </div>
             <div class="mb-3">
                 <label for="companyName" class="form-label">Nazwa firmy</label>
-                <input type="email" class="form-control" id="companyName" formControlName="companyName">
+                <input type="text" class="form-control" id="companyName" formControlName="companyName">
+                <span
+                    *ngIf="advertisementForm.get('companyName').invalid && advertisementForm.get('companyName').touched"
+                    class="text-danger">Nazwa firmy jest wymagana</span>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Opis</label>
@@ -15,7 +20,7 @@
                     formControlName="description"></textarea>
             </div>
             <div class="col mb-3">
-                <div class="row" formArrayName="skills" *ngIf="skills.length > 0" >
+                <div class="row" formArrayName="skills" *ngIf="skills.length > 0">
                     <label class="form-label">Umiejętności</label>
                     <div class="form-group" *ngFor="let skill of skillsControls; let i = index"
                         style="margin-bottom: 5px;">
@@ -33,8 +38,9 @@
                     <div class="col">
                         <div class="row justify-content-center">
                             <div class="col-auto">
-                                <button type="button" class="btn btn-primary" (click)="onNewSkill()">Dodaj umiejętność</button>
-                            </div>  
+                                <button type="button" class="btn btn-primary" (click)="onNewSkill()">Dodaj
+                                    umiejętność</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,6 +48,8 @@
             <div class="mb-3">
                 <label for="url" class="form-label">URL</label>
                 <input type="text" class="form-control" id="url" formControlName="url">
+                <span *ngIf="advertisementForm.get('url').invalid && advertisementForm.get('url').touched"
+                    class="text-danger">URL jest wymagany</span>
             </div>
             <div class="mb-3">
             </div>
@@ -54,7 +62,11 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col mb-3">
-                    <input type="date" class="form-control" formControlName="appliedDate">
+                    <input type="date" class="form-control" formControlName="appliedDate"
+                        [required]="advertisementForm.get('applied').value === true">
+                        <span
+                        *ngIf="advertisementForm.get('applied').value === true && advertisementForm.get('appliedDate').invalid"
+                        class="text-danger">Data aplikacji jest wymagana</span>
                 </div>
             </div>
             <div class="mb-3">
@@ -65,7 +77,8 @@
             </div>
             <div class="row justify-content-end">
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-primary" style="margin-right: 5px;">{{editMode ? 'Zapisz' :
+                    <button [disabled]="!advertisementForm.valid" type="submit" class="btn btn-primary"
+                        style="margin-right: 5px;">{{editMode ? 'Zapisz' :
                         'Dodaj'}}</button>
                     <button type="button" *ngIf="editMode" class="btn btn-danger" (click)="onDelete()">Usuń</button>
                 </div>
@@ -74,5 +87,5 @@
     </div>
 </form>
 <ng-template #error>
-    <app-advertisement-error></app-advertisement-error> 
+    <app-advertisement-error></app-advertisement-error>
 </ng-template>

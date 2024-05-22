@@ -51,7 +51,7 @@ export class AdvertisementEditComponent implements OnInit {
     this.advertisementForm = new FormGroup({
       'title': new FormControl(data.title, Validators.required),
       'companyName': new FormControl(data.companyName, Validators.required),
-      'description': new FormControl(data.description, Validators.required),
+      'description': new FormControl(data.description),
       'skills': new FormArray(data.skills),
       'url': new FormControl(data.url, Validators.required),
       'applied': new FormControl(data.applied),
