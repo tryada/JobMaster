@@ -1,3 +1,4 @@
+using JobMaster.Application.Advertisements.Commands.Common.Interfaces;
 using JobMaster.Domain.Advertisements;
 using JobMaster.Domain.Skills.ValueObjects;
 using MediatR;
@@ -12,4 +13,5 @@ public record CreateAdvertisementCommand(
     string Url,
     bool Applied,
     DateTime? AppliedDate,
-    bool Rejected) : IRequest<Advertisement>;
+    bool Rejected) 
+    : IRequest<Advertisement>, IAdvertisementValidationFields;
