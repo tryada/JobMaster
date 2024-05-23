@@ -17,6 +17,7 @@ public static class DependencyInjection
         services.AddSwaggerGen();
 
         services.AddProblemDetails();
+        services.AddExceptionHandler<JobMasterExceptionHandler>();
         services.AddExceptionHandler<GlobalExceptionHandler>();
 
         return services;

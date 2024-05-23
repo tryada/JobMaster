@@ -1,5 +1,6 @@
 using JobMaster.Application.Advertisements.Interfaces.Persistence;
 using JobMaster.Domain.Advertisements;
+using JobMaster.Domain.Advertisements.Exceptions;
 using MediatR;
 
 namespace JobMaster.Application.Advertisements.Queries.GetAdvertisement;
@@ -15,6 +16,7 @@ public class GetAdvertisementQueryHandler : IRequestHandler<GetAdvertisementQuer
 
     public async Task<Advertisement> Handle(GetAdvertisementQuery request, CancellationToken cancellationToken)
     {
-        return await _advertisementRepository.GetByIdAsync(request.Id);
+        return await _advertisementRepository.GetByIdAsync(request.Id)
+            ?? throw new AdvertisementNotFoundException(request.Id);
     }
 }

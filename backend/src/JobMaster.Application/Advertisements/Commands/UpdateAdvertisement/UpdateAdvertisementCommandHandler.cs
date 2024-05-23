@@ -1,6 +1,6 @@
 using JobMaster.Application.Advertisements.Interfaces.Persistence;
 using JobMaster.Domain.Advertisements;
-using JobMaster.Domain.Advertisements.Errors.Exceptions;
+using JobMaster.Domain.Advertisements.Exceptions;
 using MediatR;
 
 namespace JobMaster.Application.Advertisements.Commands.UpdateAdvertisement;

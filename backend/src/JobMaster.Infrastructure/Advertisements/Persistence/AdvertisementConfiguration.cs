@@ -23,18 +23,18 @@ public class AdvertisementConfiguration : IEntityTypeConfiguration<Advertisement
 
         builder.Property(advertisement => advertisement.Title)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(Advertisement.TitleMaxLength);
 
         builder.Property(advertisement => advertisement.CompanyName)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(Advertisement.CompanyNameMaxLength);
 
         builder.Property(advertisement => advertisement.Description)
-            .HasMaxLength(1000);
+            .HasMaxLength(Advertisement.DescriptionMaxLength);
 
         builder.Property(advertisement => advertisement.Url)
             .IsRequired()
-            .HasMaxLength(250);
+            .HasMaxLength(Advertisement.UrlMaxLength);
 
         builder.Property(advertisement => advertisement.Applied)
             .HasDefaultValue(false);

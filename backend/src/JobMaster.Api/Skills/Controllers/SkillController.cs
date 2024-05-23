@@ -14,22 +14,22 @@ public class SkillsController(IMediator mediator, IMapper mapper) : BaseControll
     private readonly IMapper _mapper = mapper;
 
     [HttpGet]
-    public IActionResult Get()
+    public async Task<IActionResult> Get()
     {
         var query = new ListSkillsQuery();
-        var queryResult = _mediator.Send(query);
+        var queryResult = await _mediator.Send(query);
 
-        var result = _mapper.Map<IEnumerable<SkillResponse>>(queryResult.Result);
+        var result = _mapper.Map<IEnumerable<SkillResponse>>(queryResult);
         return Ok(result);
     }
 
     [HttpPost]
-    public IActionResult Post(CreateSkillRequest request)
+    public async Task<IActionResult> Post(CreateSkillRequest request)
     {
         var command = new CreateSkillCommand(request.Name);
-        var commandResult = _mediator.Send(command);
+        var commandResult = await _mediator.Send(command);
 
-        var result = _mapper.Map<SkillResponse>(commandResult.Result);
+        var result = _mapper.Map<SkillResponse>(commandResult);
         return Ok(result);
     }
 }
