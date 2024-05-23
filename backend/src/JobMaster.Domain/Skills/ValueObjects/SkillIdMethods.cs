@@ -5,6 +5,7 @@ namespace JobMaster.Domain.Skills.ValueObjects;
 public partial class SkillId : ValueObject
 {
     public static SkillId CreateUnique() => new(Guid.NewGuid());
+    public static SkillId Create(string value) => new(new Guid(value));
 
     public override string ToString() => Value.ToString();
     

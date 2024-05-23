@@ -1,5 +1,6 @@
 using JobMaster.Application.Skills.Interfaces.Persistence;
 using JobMaster.Domain.Skills;
+using JobMaster.Domain.Skills.ValueObjects;
 using JobMaster.Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,11 @@ namespace JobMaster.Infrastructure.Skills.Persistence;
 public class SkillRepository(JobMasterDbContext dbContext) : ISkillRepository
 {
     private readonly JobMasterDbContext _dbContext = dbContext;
+
+    public async Task<Skill> GetByIdAsync(SkillId id)
+    {
+        return await _dbContext.Skills.FirstOrDefaultAsync(x => x.Id == id);
+    }
 
     public async Task<List<Skill>> GetAllAsync()
     {

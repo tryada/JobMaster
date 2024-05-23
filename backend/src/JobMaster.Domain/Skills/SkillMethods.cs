@@ -6,6 +6,13 @@ public partial class Skill
 {
     public static Skill Create(string name)
     {
-        return new Skill(SkillId.CreateUnique(), name);
+        return new Skill(
+            SkillId.CreateUnique(), 
+            name);
+    }
+
+    public void Update(string name) 
+    {
+        Name = name;
     }
 }

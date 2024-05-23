@@ -1,5 +1,6 @@
 using JobMaster.Api.Common.Controllers;
 using JobMaster.Application.Skills.Commands.CreateSkill;
+using JobMaster.Application.Skills.Commands.UpdateSkill;
 using JobMaster.Application.Skills.Queries.ListSkills;
 using JobMaster.Contracts.Skills;
 using MapsterMapper;
@@ -26,7 +27,17 @@ public class SkillsController(IMediator mediator, IMapper mapper) : BaseControll
     [HttpPost]
     public async Task<IActionResult> Post(CreateSkillRequest request)
     {
-        var command = new CreateSkillCommand(request.Name);
+        var command = _mapper.Map<CreateSkillCommand>(request);
+        var commandResult = await _mediator.Send(command);
+
+        var result = _mapper.Map<SkillResponse>(commandResult);
+        return Ok(result);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(string id, UpdateSkillRequest request)
+    {
+        var command = _mapper.Map<UpdateSkillCommand>((request, id));
         var commandResult = await _mediator.Send(command);
 
         var result = _mapper.Map<SkillResponse>(commandResult);
