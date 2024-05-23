@@ -6,10 +6,10 @@ using JobMaster.Domain.Advertisements.Exceptions;
 
 namespace JobMaster.Application.Advertisements.Commands.Common;
 
-public class AdvertisementCommandValidation<T> : AbstractValidator<T>
+public class AdvertisementCommandValidator<T> : AbstractValidator<T>
     where T : IAdvertisementValidationFields
 {
-    public AdvertisementCommandValidation()
+    public AdvertisementCommandValidator()
     {
         RuleFor(x => x.Title)
             .NotEmpty()
