@@ -17,6 +17,7 @@ Aplikacja wspomagająca szukanie pracy.
 * MediatR
 * Mapster
 * EntityFrameworkCore
+* FluentValidation
 
 ## Funkcjonalności
 * Dodawanie/ edycja/ usuwanie ogłoszeń
@@ -25,3 +26,5 @@ Aplikacja wspomagająca szukanie pracy.
 * Oznaczanie ogłoszeń, które zostały odrzucone przez pracodawców
 * Możliwość otwarcia strony internetowej z ogłoszeniem
 * Przechowywanie danych w bazie danych
+* Walidacja danych
+* Obsługa wyjątków
