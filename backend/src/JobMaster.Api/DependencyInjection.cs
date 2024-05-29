@@ -1,3 +1,4 @@
+using JobMaster.Api.Authentication.Setup;
 using JobMaster.Api.Common.Cors;
 using JobMaster.Api.Common.Exceptions;
 using JobMaster.Api.Common.Mapping;
@@ -19,6 +20,8 @@ public static class DependencyInjection
         services.AddProblemDetails();
         services.AddExceptionHandler<JobMasterExceptionHandler>();
         services.AddExceptionHandler<GlobalExceptionHandler>();
+
+        services.AddJwt();
 
         return services;
     }
