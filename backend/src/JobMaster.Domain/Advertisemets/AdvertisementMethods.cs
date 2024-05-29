@@ -43,14 +43,14 @@ public partial class Advertisement
         Rejected = rejected;
     }
 
-    public void AddSkills(List<SkillId> skillId)
+    public void AddSkills(List<SkillId> skillIds)
     {
-        _skills.AddRange(skillId);
+        _skills.AddRange(skillIds);
     }
 
-    public void UpdateSkills(List<SkillId> skillId)
+    public void UpdateSkills(List<SkillId> skillIds)
     {
         _skills.Clear();
-        _skills.AddRange(skillId);
+        _skills.AddRange(skillIds);
     }
 }

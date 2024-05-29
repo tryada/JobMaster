@@ -3,18 +3,16 @@ using MediatR;
 
 namespace JobMaster.Application.Common.Behaviors;
 
-public class TransactionBehavior<TRequest, TResponse>
+public class TransactionBehavior<TRequest, TResponse>(IUnitOfWork unitOfWork)
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : class
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public TransactionBehavior(IUnitOfWork unitOfWork)
-    {
-        _unitOfWork = unitOfWork;
-    }
-
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(
+        TRequest request, 
+        RequestHandlerDelegate<TResponse> next, 
+        CancellationToken cancellationToken)
     {
         await _unitOfWork.BeginTransactionAsync();
 

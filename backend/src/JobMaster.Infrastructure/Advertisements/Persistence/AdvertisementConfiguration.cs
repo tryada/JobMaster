@@ -58,7 +58,7 @@ public class AdvertisementConfiguration : IEntityTypeConfiguration<Advertisement
             builder.WithOwner().HasForeignKey("AdvertisementId");
 
             builder.Property(d => d.Value)
-                .HasColumnName("AdvertisementSkillId")
+                .HasColumnName("SkillId")
                 .ValueGeneratedNever();
         });
 

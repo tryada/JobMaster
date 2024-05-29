@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobMaster.Infrastructure.Migrations
 {
     [DbContext(typeof(JobMasterDbContext))]
-    [Migration("20240522111007_AdvertisementAttributes")]
-    partial class AdvertisementAttributes
+    [Migration("20240529134838_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,6 +83,39 @@ namespace JobMaster.Infrastructure.Migrations
                     b.ToTable("Skills", (string)null);
                 });
 
+            modelBuilder.Entity("JobMaster.Domain.Users.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users", (string)null);
+                });
+
             modelBuilder.Entity("JobMaster.Domain.Advertisements.Advertisement", b =>
                 {
                     b.OwnsMany("JobMaster.Domain.Skills.ValueObjects.SkillId", "Skills", b1 =>
@@ -98,7 +131,7 @@ namespace JobMaster.Infrastructure.Migrations
 
                             b1.Property<Guid>("Value")
                                 .HasColumnType("uniqueidentifier")
-                                .HasColumnName("AdvertisementSkillId");
+                                .HasColumnName("SkillId");
 
                             b1.HasKey("Id");
 

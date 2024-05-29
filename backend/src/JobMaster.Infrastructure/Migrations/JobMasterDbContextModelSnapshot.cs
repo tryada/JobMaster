@@ -128,7 +128,7 @@ namespace JobMaster.Infrastructure.Migrations
 
                             b1.Property<Guid>("Value")
                                 .HasColumnType("uniqueidentifier")
-                                .HasColumnName("AdvertisementSkillId");
+                                .HasColumnName("SkillId");
 
                             b1.HasKey("Id");
 
