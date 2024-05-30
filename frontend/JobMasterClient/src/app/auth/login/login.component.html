@@ -1,0 +1,21 @@
+<form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
+    <div class="form-floating mb-3">
+        <input type="text" id="email" class="form-control" placeholder="" ngModel name="email" required email>
+        <label for="email" class="form-label">E-mail</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" id="password" class="form-control" placeholder="" ngModel name="password" required>
+        <label for="password" class="form-label">Hasło</label>
+    </div>
+    <div class="alert alert-danger text-center" role="alert" *ngIf="error">
+        {{error}}
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="row">
+                <button class="btn btn-primary mb-2" type="submit" [disabled]="!loginForm.valid">Zaloguj</button>
+                <button class="btn btn-light" type="button" (click)="onSignUp()">Rejestracja</button>
+            </div>
+        </div>
+    </div>
+</form>

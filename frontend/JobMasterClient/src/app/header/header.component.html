@@ -1,7 +1,7 @@
 <nav class="navbar border-bottom navbar-expand navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" routerLink="">{{'{ job master }'}}</a>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" *ngIf="isAuthenticated; else loginNavbar">
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" routerLink="/home" aria-current="page">Home</a>
             </li>
@@ -11,6 +11,17 @@
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" routerLink="/advertisements">Ogłoszenia</a>
             </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" (click)="onSignOut()" style="cursor: pointer;">Wyloguj</a>
+            </li>
         </ul>
     </div>
 </nav>
+
+<ng-template #loginNavbar>
+    <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/auth">Logowanie</a>
+        </li>
+    </ul>
+</ng-template>
