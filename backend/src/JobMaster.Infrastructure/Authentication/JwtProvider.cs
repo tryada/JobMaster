@@ -13,7 +13,7 @@ public sealed class JwtProvider(IOptions<JwtOptions> options)
 {
     private readonly JwtOptions _options = options.Value;
 
-    public string Generate(User user)
+    public string Generate(User user, out DateTime expirationDate)
     {
         var claims = new Claim[]
         {
@@ -27,11 +27,12 @@ public sealed class JwtProvider(IOptions<JwtOptions> options)
             SecurityAlgorithms.HmacSha256
         );
 
+        expirationDate = DateTime.UtcNow.AddMinutes(_options.ExpirationInMinutes);
         var token = new JwtSecurityToken(
             issuer: _options.Issuer,
             audience: _options.Audience,
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(_options.ExpirationInMinutes),
+            expires: expirationDate,
             signingCredentials: signingCredentials
         );
 

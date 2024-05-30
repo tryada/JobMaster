@@ -32,11 +32,10 @@ public class RegisterCommandHandler(
 
         await _userRepository.AddAsync(user);
 
-        var token = _jwtProvider.Generate(user);
-
         return new AuthenticationResult(
             user,
-            token
+            _jwtProvider.Generate(user, out var expirationDate),
+            expirationDate
         );
     }
 }

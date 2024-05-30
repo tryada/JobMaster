@@ -6,11 +6,17 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace JobMaster.Api.Authentication.Setup;
 
-public class JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions) : IConfigureOptions<JwtBearerOptions>
+public class JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions) 
+    : IConfigureNamedOptions<JwtBearerOptions>
 {
     private readonly JwtOptions _jwtOptions = jwtOptions.Value;
 
     public void Configure(JwtBearerOptions options)
+    {
+        Configure(JwtBearerDefaults.AuthenticationScheme, options);
+    }
+
+    public void Configure(string? name, JwtBearerOptions options)
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {

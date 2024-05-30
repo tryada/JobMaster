@@ -4,5 +4,5 @@ namespace JobMaster.Application.Authentication.Interfaces;
 
 public interface IJwtProvider 
 {
-    string Generate(User user);
+    string Generate(User user, out DateTime expirationDate);
 }

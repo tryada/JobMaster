@@ -5,10 +5,12 @@ using JobMaster.Application.Authentication.Queries.Login;
 using JobMaster.Contracts.Authentication;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobMaster.Api.Authentication.Controllers;
 
+[AllowAnonymous]
 public class AuthenticationController(ISender sender, IMapper mapper) : BaseController
 {
     private readonly ISender _sender = sender;

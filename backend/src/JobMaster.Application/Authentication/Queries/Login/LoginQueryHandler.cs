@@ -25,7 +25,8 @@ public class LoginQueryHandler(
 
         return new AuthenticationResult(
             user,
-            _jwtProvider.Generate(user)
+            _jwtProvider.Generate(user, out var expirationDate),
+            expirationDate
         );
     }
 }
