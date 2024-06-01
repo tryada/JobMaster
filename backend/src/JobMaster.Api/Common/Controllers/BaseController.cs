@@ -1,11 +1,9 @@
-namespace JobMaster.Api.Common.Controllers;
-
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+namespace JobMaster.Api.Common.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
 public class BaseController : ControllerBase
 {
 }

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject, catchError, concatMap, lastValueFrom, map, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 import { Advertisement } from '../model/advertisement.model';
-import { environment } from '../../../environments/environment';
+import { UserHttpClient } from '../../global/services/user-http-client.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +11,11 @@ export class AdvertisementService {
 
   advertisementsChanged = new Subject<Advertisement[]>();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: UserHttpClient) { }
 
   getAdvertisements() {
     return this.httpClient
-      .get<Advertisement[]>(environment.apiUrl + 'advertisements')
+      .get<Advertisement[]>('advertisements')
       .pipe(
         map(advertisements => advertisements),
         catchError(() => of([]))
@@ -25,7 +24,7 @@ export class AdvertisementService {
 
   getAdvertisement(id: string) {
     return this.httpClient
-      .get<Advertisement>(environment.apiUrl + 'advertisements/' + id)
+      .get<Advertisement>('advertisements/' + id)
       .pipe(
         map(advertisement => advertisement),
         catchError(() => {
@@ -42,7 +41,7 @@ export class AdvertisementService {
 
   deleteAdvertisement(id: string) {
 
-    this.httpClient.delete(environment.apiUrl + 'advertisements/' + id)
+    this.httpClient.delete('advertisements/' + id)
       .pipe(
         concatMap(() => this.getAdvertisements())
       ).subscribe(advertisements => {
@@ -53,9 +52,9 @@ export class AdvertisementService {
   async saveAdvertisement(advertisement: Advertisement) {
 
     if (advertisement.id === null) {
-      await lastValueFrom(this.httpClient.post(environment.apiUrl + 'advertisements', advertisement));
+      await lastValueFrom(this.httpClient.post('advertisements', advertisement));
     } else {
-      await lastValueFrom(this.httpClient.put(environment.apiUrl + 'advertisements/' + advertisement.id, advertisement));
+      await lastValueFrom(this.httpClient.put('advertisements/' + advertisement.id, advertisement));
     }
 
     const advertisements = await lastValueFrom(this.getAdvertisements());

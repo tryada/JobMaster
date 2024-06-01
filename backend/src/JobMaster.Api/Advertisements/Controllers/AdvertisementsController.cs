@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
+using MapsterMapper;
+using MediatR;
+
 using JobMaster.Api.Common.Controllers;
 using JobMaster.Application.Advertisements.Commands.CreateAdvertisement;
 using JobMaster.Application.Advertisements.Commands.DeleteAdvertisement;
@@ -5,14 +9,11 @@ using JobMaster.Application.Advertisements.Commands.UpdateAdvertisement;
 using JobMaster.Application.Advertisements.Queries.GetAdvertisement;
 using JobMaster.Application.Advertisements.Queries.ListAdvertisements;
 using JobMaster.Contracts.Advertisements;
-using MapsterMapper;
-using MediatR;
-
-using Microsoft.AspNetCore.Mvc;
 
 namespace JobMaster.Api.Advertisements.Controllers;
 
-public class AdvertisementsController(IMediator mediator, IMapper mapper) : BaseController
+public class AdvertisementsController(IMediator mediator, IMapper mapper) 
+    : BaseUserController
 {
     private readonly IMediator _mediator = mediator;
     private readonly IMapper _mapper = mapper;

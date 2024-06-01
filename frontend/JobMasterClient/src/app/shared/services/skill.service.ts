@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, shareReplay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 import { Skill } from '../models/skill.model';
-import { environment } from '../../../environments/environment';
-import { Observable, of } from 'rxjs';
+import { UserHttpClient } from '../../global/services/user-http-client.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +12,7 @@ export class SkillService {
 
   private data: Observable<Skill[]>;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: UserHttpClient) { }
 
   getData() {
     if (!this.data) {
@@ -24,7 +23,7 @@ export class SkillService {
 
   refreshData() {
     this.data = this.httpClient
-      .get<Skill[]>(environment.apiUrl + 'skills')
+      .get<Skill[]>('skills')
       .pipe(
         shareReplay(),
         map((skills: Skill[]) => {

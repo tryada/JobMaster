@@ -1,15 +1,17 @@
+using Microsoft.AspNetCore.Mvc;
+using MapsterMapper;
+using MediatR;
+
 using JobMaster.Api.Common.Controllers;
 using JobMaster.Application.Skills.Commands.CreateSkill;
 using JobMaster.Application.Skills.Commands.UpdateSkill;
 using JobMaster.Application.Skills.Queries.ListSkills;
 using JobMaster.Contracts.Skills;
-using MapsterMapper;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace JobMaster.Api.Skills.Controllers;
 
-public class SkillsController(IMediator mediator, IMapper mapper) : BaseController
+public class SkillsController(IMediator mediator, IMapper mapper) 
+    : BaseUserController
 {
     private readonly IMediator _mediator = mediator;
     private readonly IMapper _mapper = mapper;
