@@ -3,7 +3,7 @@
     </div>
     <div class="card-header">{{advertisement.companyName}}</div>
     <div class="card-body">
-        <div class="card-text">{{advertisement.description | truncate:150}}</div>
+        <div class="card-text">{{advertisement.description | truncate:250}}</div>
     </div>
     <div class="card-footer" *ngIf="advertisement.applied">
         <div class="alert alert-warning" *ngIf="advertisement.applied && !advertisement.rejected">
