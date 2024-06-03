@@ -4,6 +4,8 @@ using JobMaster.Application.Skills.Commands.Common.Interfaces;
 using JobMaster.Domain.Skills;
 using JobMaster.Domain.Skills.Exceptions;
 
+namespace JobMaster.Application.Skills.Commands.Common;
+
 public class SkillCommandValidator<TModel> : AbstractValidator<TModel>
     where TModel : ISkillValidationFields
 {
