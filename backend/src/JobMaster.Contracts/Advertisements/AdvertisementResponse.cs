@@ -1,6 +1,7 @@
 namespace JobMaster.Contracts.Advertisements;
 
 public record AdvertisementResponse(
+    string UserId,
     string Id,
     string Title,
     string CompanyName,

@@ -1,5 +1,6 @@
 using JobMaster.Domain.Advertisements.ValueObjects;
 using JobMaster.Domain.Skills.ValueObjects;
+using JobMaster.Domain.Users;
 
 namespace JobMaster.Domain.Advertisements;
 
@@ -8,6 +9,7 @@ public partial class Advertisement
     private readonly List<SkillId> _skills = [];
 
     public AdvertisementId Id { get; private set; }
+    public UserId UserId { get; private set; }
     public string Title { get; private set; }
     public string CompanyName { get; private set; }
     public string Description { get; private set; }
@@ -18,6 +20,7 @@ public partial class Advertisement
     public bool Rejected { get; private set; }
     
     private Advertisement(
+        UserId userId,
         AdvertisementId id,
         string title,
         string companyName,
@@ -27,6 +30,7 @@ public partial class Advertisement
         DateTime? appliedDate,
         bool rejected)
     {
+        UserId = userId;
         Id = id;
         Title = title;
         CompanyName = companyName;

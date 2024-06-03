@@ -16,7 +16,7 @@ public class UpdateAdvertisementCommandHandler : IRequestHandler<UpdateAdvertise
 
     public async Task<Advertisement> Handle(UpdateAdvertisementCommand request, CancellationToken cancellationToken)
     {
-        var advertisement = await _advertisementRepository.GetByIdAsync(request.Id) 
+        var advertisement = await _advertisementRepository.GetByIdAsync(request.UserId, request.Id) 
             ?? throw new AdvertisementNotFoundException(request.Id);
 
         advertisement.Update(

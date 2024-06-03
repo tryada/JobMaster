@@ -1,6 +1,7 @@
 using JobMaster.Application.Advertisements.Interfaces.Persistence;
 using JobMaster.Domain.Advertisements;
 using JobMaster.Domain.Advertisements.ValueObjects;
+using JobMaster.Domain.Users;
 using JobMaster.Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,14 +11,18 @@ public class AdvertisementRepository(JobMasterDbContext dbContext) : IAdvertisem
 {
     private readonly JobMasterDbContext _dbContext = dbContext;
 
-    public async Task<Advertisement> GetByIdAsync(AdvertisementId id)
+    public async Task<Advertisement> GetByIdAsync(UserId userId, AdvertisementId id)
     {
-        return await _dbContext.Advertisements.FirstOrDefaultAsync(x => x.Id == id);
+        return await _dbContext.Advertisements
+            .Where(x => x.UserId == userId)
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<List<Advertisement>> GetAllAsync()
+    public async Task<List<Advertisement>> GetAllAsync(UserId userId)
     {
-        return await _dbContext.Advertisements.ToListAsync();
+        return await _dbContext.Advertisements
+            .Where(x => x.UserId == userId)
+            .ToListAsync();
     }
 
     public async Task AddAsync(Advertisement advertisement)

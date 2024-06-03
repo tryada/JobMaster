@@ -1,11 +1,13 @@
 using JobMaster.Domain.Advertisements.ValueObjects;
 using JobMaster.Domain.Skills.ValueObjects;
+using JobMaster.Domain.Users;
 
 namespace JobMaster.Domain.Advertisements;
 
 public partial class Advertisement
 {
     public static Advertisement Create(
+        UserId userId,
         string title,
         string companyName,
         string description,
@@ -15,6 +17,7 @@ public partial class Advertisement
         bool rejected)
     {
         return new Advertisement(
+            userId,
             AdvertisementId.CreateUnique(),
             title,
             companyName,

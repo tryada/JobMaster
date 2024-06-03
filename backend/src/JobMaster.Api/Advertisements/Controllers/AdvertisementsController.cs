@@ -19,9 +19,9 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     private readonly IMapper _mapper = mapper;
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> Get(string id)
+    public async Task<IActionResult> Get(string userId, string id)
     {
-        var query = _mapper.Map<GetAdvertisementQuery>(id);
+        var query = _mapper.Map<GetAdvertisementQuery>((userId, id));
         var queryResult = await _mediator.Send(query);
 
         var result = _mapper.Map<AdvertisementResponse>(queryResult);
@@ -29,9 +29,9 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Get(string userId)
     {
-        var query = new ListAdvertisementsQuery();
+        var query = _mapper.Map<ListAdvertisementsQuery>(userId);
         var queryResult = await _mediator.Send(query);
         
         var result = _mapper.Map<IEnumerable<AdvertisementResponse>>(queryResult);
@@ -39,9 +39,9 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(CreateAdvertisementRequest request)
+    public async Task<IActionResult> Post(CreateAdvertisementRequest request, string userId)
     {
-        var command = _mapper.Map<CreateAdvertisementCommand>(request);
+        var command = _mapper.Map<CreateAdvertisementCommand>((request, userId));
         var commandResult = await _mediator.Send(command);
 
         var result = _mapper.Map<AdvertisementResponse>(commandResult);
@@ -49,9 +49,9 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(UpdateAdvertisementRequest request, string id)
+    public async Task<IActionResult> Put(UpdateAdvertisementRequest request, string userId, string id)
     {
-        var command = _mapper.Map<UpdateAdvertisementCommand>((request, id));
+        var command = _mapper.Map<UpdateAdvertisementCommand>((request, userId, id));
         var commandResult = await _mediator.Send(command);
 
         var result = _mapper.Map<AdvertisementResponse>(commandResult);
@@ -59,9 +59,9 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(string id)
+    public async Task<IActionResult> Delete(string userId, string id)
     {
-        var command = _mapper.Map<DeleteAdvertisementCommand>(id);
+        var command = _mapper.Map<DeleteAdvertisementCommand>((userId, id));
         await _mediator.Send(command);
         
         return NoContent();

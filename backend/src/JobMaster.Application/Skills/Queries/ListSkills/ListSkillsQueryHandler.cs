@@ -15,6 +15,6 @@ public class ListSkillsQueryHandler : IRequestHandler<ListSkillsQuery, List<Skil
 
     public async Task<List<Skill>> Handle(ListSkillsQuery request, CancellationToken cancellationToken)
     {
-        return await _skillsRepository.GetAllAsync();
+        return await _skillsRepository.GetAllAsync(request.UserId);
     }
 }

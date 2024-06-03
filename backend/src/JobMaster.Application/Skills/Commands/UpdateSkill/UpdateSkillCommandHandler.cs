@@ -16,7 +16,7 @@ public class UpdateSkillCommmandHandler
 
     public async Task<Skill> Handle(UpdateSkillCommand request, CancellationToken cancellationToken)
     {
-        var skill = await _skillRepository.GetByIdAsync(request.Id)
+        var skill = await _skillRepository.GetByIdAsync(request.UserId, request.Id)
             ?? throw new SkillNotFoundException(request.Id);
 
         skill.Update(

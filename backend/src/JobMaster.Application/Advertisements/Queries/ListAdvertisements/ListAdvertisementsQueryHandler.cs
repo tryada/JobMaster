@@ -16,6 +16,6 @@ public class ListAdvertisementsQueryHandler : IRequestHandler<ListAdvertisements
 
     public async Task<List<Advertisement>> Handle(ListAdvertisementsQuery request, CancellationToken cancellationToken)
     {
-        return await _advertisementRepository.GetAllAsync();
+        return await _advertisementRepository.GetAllAsync(request.UserId);
     }
 }

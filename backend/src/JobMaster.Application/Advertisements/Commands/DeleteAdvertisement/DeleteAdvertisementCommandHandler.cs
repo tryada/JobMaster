@@ -15,7 +15,7 @@ public class DeleteAdvertisementCommandHandler : IRequestHandler<DeleteAdvertise
 
     public async Task Handle(DeleteAdvertisementCommand request, CancellationToken cancellationToken)
     {
-        var advertisement = await _advertisementRepository.GetByIdAsync(request.Id) 
+        var advertisement = await _advertisementRepository.GetByIdAsync(request.UserId, request.Id) 
             ?? throw new AdvertisementNotFoundException(request.Id);
 
         await _advertisementRepository.DeleteAsync(advertisement);

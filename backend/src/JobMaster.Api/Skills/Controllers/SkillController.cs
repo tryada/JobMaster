@@ -17,9 +17,9 @@ public class SkillsController(IMediator mediator, IMapper mapper)
     private readonly IMapper _mapper = mapper;
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Get(string userId)
     {
-        var query = new ListSkillsQuery();
+        var query = _mapper.Map<ListSkillsQuery>(userId);
         var queryResult = await _mediator.Send(query);
 
         var result = _mapper.Map<IEnumerable<SkillResponse>>(queryResult);
@@ -27,9 +27,9 @@ public class SkillsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(CreateSkillRequest request)
+    public async Task<IActionResult> Post(CreateSkillRequest request, string userId)
     {
-        var command = _mapper.Map<CreateSkillCommand>(request);
+        var command = _mapper.Map<CreateSkillCommand>((request, userId));
         var commandResult = await _mediator.Send(command);
 
         var result = _mapper.Map<SkillResponse>(commandResult);
@@ -37,9 +37,9 @@ public class SkillsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(string id, UpdateSkillRequest request)
+    public async Task<IActionResult> Put(UpdateSkillRequest request, string userId, string id)
     {
-        var command = _mapper.Map<UpdateSkillCommand>((request, id));
+        var command = _mapper.Map<UpdateSkillCommand>((request, userId, id));
         var commandResult = await _mediator.Send(command);
 
         var result = _mapper.Map<SkillResponse>(commandResult);

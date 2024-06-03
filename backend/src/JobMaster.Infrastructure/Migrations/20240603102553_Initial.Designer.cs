@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobMaster.Infrastructure.Migrations
 {
     [DbContext(typeof(JobMasterDbContext))]
-    [Migration("20240529134838_Initial")]
+    [Migration("20240603102553_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -63,6 +63,9 @@ namespace JobMaster.Infrastructure.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.ToTable("Advertisements", (string)null);
@@ -77,6 +80,9 @@ namespace JobMaster.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

@@ -1,5 +1,6 @@
 using JobMaster.Domain.Skills;
 using JobMaster.Domain.Skills.ValueObjects;
+using JobMaster.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,6 +18,12 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
             .HasConversion(
                 id => id.Value,
                 value => (SkillId)value);
+
+        builder.Property(x => x.UserId)
+            .IsRequired()
+            .HasConversion(
+                id => id.Value,
+                value => UserId.Create(value));
 
         builder.Property(x => x.Name)
             .HasMaxLength(Skill.NameMaxLength)

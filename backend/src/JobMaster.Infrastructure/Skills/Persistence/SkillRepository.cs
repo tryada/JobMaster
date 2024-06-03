@@ -1,6 +1,7 @@
 using JobMaster.Application.Skills.Interfaces.Persistence;
 using JobMaster.Domain.Skills;
 using JobMaster.Domain.Skills.ValueObjects;
+using JobMaster.Domain.Users;
 using JobMaster.Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,14 +11,18 @@ public class SkillRepository(JobMasterDbContext dbContext) : ISkillRepository
 {
     private readonly JobMasterDbContext _dbContext = dbContext;
 
-    public async Task<Skill> GetByIdAsync(SkillId id)
+    public async Task<Skill> GetByIdAsync(UserId userId, SkillId id)
     {
-        return await _dbContext.Skills.FirstOrDefaultAsync(x => x.Id == id);
+        return await _dbContext.Skills
+            .Where(x => x.UserId == userId)
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<List<Skill>> GetAllAsync()
+    public async Task<List<Skill>> GetAllAsync(UserId userId)
     {
-        return await _dbContext.Skills.ToListAsync();
+        return await _dbContext.Skills
+            .Where(x => x.UserId == userId)
+            .ToListAsync();
     }
 
     public async Task AddAsync(Skill skill)

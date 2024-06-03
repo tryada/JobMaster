@@ -1,5 +1,6 @@
 using JobMaster.Domain.Advertisements;
 using JobMaster.Domain.Advertisements.ValueObjects;
+using JobMaster.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,6 +21,10 @@ public class AdvertisementConfiguration : IEntityTypeConfiguration<Advertisement
         builder.Property(advertisement => advertisement.Id)
          .ValueGeneratedNever()
          .HasConversion(id => id.Value, value => (AdvertisementId)value);
+
+        builder.Property(advertisement => advertisement.UserId)
+            .IsRequired()
+            .HasConversion(id => id.Value, value => UserId.Create(value));
 
         builder.Property(advertisement => advertisement.Title)
             .IsRequired()

@@ -16,7 +16,7 @@ public class GetAdvertisementQueryHandler : IRequestHandler<GetAdvertisementQuer
 
     public async Task<Advertisement> Handle(GetAdvertisementQuery request, CancellationToken cancellationToken)
     {
-        return await _advertisementRepository.GetByIdAsync(request.Id)
+        return await _advertisementRepository.GetByIdAsync(request.UserId, request.Id)
             ?? throw new AdvertisementNotFoundException(request.Id);
     }
 }

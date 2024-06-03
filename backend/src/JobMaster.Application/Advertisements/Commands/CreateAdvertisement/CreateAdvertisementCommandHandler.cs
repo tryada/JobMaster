@@ -16,6 +16,7 @@ public class CreateAdvertisementCommandHandler : IRequestHandler<CreateAdvertise
     public async Task<Advertisement> Handle(CreateAdvertisementCommand request, CancellationToken cancellationToken)
     {
         var advertisement = Advertisement.Create(
+            request.UserId,
             request.Title,
             request.CompanyName,
             request.Description,
