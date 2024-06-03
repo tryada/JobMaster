@@ -23,10 +23,8 @@ public class CreateAdvertisementCommandHandler : IRequestHandler<CreateAdvertise
             request.Url,
             request.Applied,
             request.AppliedDate,
-            request.Rejected
-        );
-
-        advertisement.AddSkills(request.Skills);
+            request.Rejected,
+            request.Skills);
 
         await _advertisementRepository.AddAsync(advertisement);
         return advertisement;

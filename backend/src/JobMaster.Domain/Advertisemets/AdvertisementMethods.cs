@@ -1,3 +1,4 @@
+using JobMaster.Domain.Advertisements.Events;
 using JobMaster.Domain.Advertisements.ValueObjects;
 using JobMaster.Domain.Skills.ValueObjects;
 using JobMaster.Domain.Users;
@@ -14,9 +15,10 @@ public partial class Advertisement
         string url,
         bool applied,
         DateTime? appliedDate,
-        bool rejected)
+        bool rejected,
+        List<SkillId> skillIds)
     {
-        return new Advertisement(
+        var advertisement = new Advertisement(
             userId,
             AdvertisementId.CreateUnique(),
             title,
@@ -25,7 +27,12 @@ public partial class Advertisement
             url,
             applied,
             appliedDate,
-            rejected);
+            rejected,
+            skillIds);
+
+        advertisement.AddDomainEvent(new AdvertisementCreatedEvent(advertisement));
+        
+        return advertisement;
     }
 
     public void Update(
@@ -35,7 +42,8 @@ public partial class Advertisement
         string url,
         bool applied,
         DateTime? appliedDate,
-        bool rejected)
+        bool rejected,
+        List<SkillId> skillIds)
     {
         Title = title;
         CompanyName = companyName;
@@ -44,16 +52,10 @@ public partial class Advertisement
         Applied = applied;
         AppliedDate = appliedDate;
         Rejected = rejected;
-    }
 
-    public void AddSkills(List<SkillId> skillIds)
-    {
-        _skills.AddRange(skillIds);
-    }
-
-    public void UpdateSkills(List<SkillId> skillIds)
-    {
         _skills.Clear();
         _skills.AddRange(skillIds);
+
+        AddDomainEvent(new AdvertisementUpdatedEvent(this));
     }
 }

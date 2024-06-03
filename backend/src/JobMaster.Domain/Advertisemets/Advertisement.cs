@@ -1,14 +1,14 @@
 using JobMaster.Domain.Advertisements.ValueObjects;
+using JobMaster.Domain.Common.Models;
 using JobMaster.Domain.Skills.ValueObjects;
 using JobMaster.Domain.Users;
 
 namespace JobMaster.Domain.Advertisements;
 
-public partial class Advertisement
+public partial class Advertisement : Entity<AdvertisementId>
 {
     private readonly List<SkillId> _skills = [];
 
-    public AdvertisementId Id { get; private set; }
     public UserId UserId { get; private set; }
     public string Title { get; private set; }
     public string CompanyName { get; private set; }
@@ -28,7 +28,8 @@ public partial class Advertisement
         string url,
         bool applied,
         DateTime? appliedDate,
-        bool rejected)
+        bool rejected,
+        List<SkillId> skillIds)
     {
         UserId = userId;
         Id = id;
@@ -39,6 +40,7 @@ public partial class Advertisement
         Applied = applied;
         AppliedDate = appliedDate;
         Rejected = rejected;
+        _skills.AddRange(skillIds);
     }
 
     private Advertisement()

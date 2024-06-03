@@ -6,6 +6,7 @@ using JobMaster.Infrastructure.Advertisements.Persistence;
 using JobMaster.Infrastructure.Authentication;
 using JobMaster.Infrastructure.Common;
 using JobMaster.Infrastructure.Common.Persistence;
+using JobMaster.Infrastructure.Common.Persistence.Interceptors;
 using JobMaster.Infrastructure.Skills.Persistence;
 using JobMaster.Infrastructure.Users.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,23 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
+        services
+            .AddPersistence()
+            .AddAuthentication();
+
+        return services;
+    }
+
+    private static IServiceCollection AddAuthentication(this IServiceCollection services)
+    {
+        services.AddTransient<IJwtProvider, JwtProvider>();
+        services.AddTransient<IPasswordProvider, PasswordProvider>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddPersistence(this IServiceCollection services)
+    {
         services.AddTransient<IAdvertisementRepository, AdvertisementRepository>();
         services.AddTransient<ISkillRepository, SkillRepository>();
         services.AddTransient<IUserRepository, UserRepository>();
@@ -26,9 +44,7 @@ public static class DependencyInjection
         );
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-        services.AddTransient<IJwtProvider, JwtProvider>();
-        services.AddTransient<IPasswordProvider, PasswordProvider>();
+        services.AddScoped<PublishDomainEventsInterceptor>();
 
         return services;
     }

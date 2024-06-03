@@ -1,11 +1,11 @@
+using JobMaster.Domain.Common.Models;
 using JobMaster.Domain.Skills.ValueObjects;
 using JobMaster.Domain.Users;
 
 namespace JobMaster.Domain.Skills;
 
-public partial class Skill
+public partial class Skill : Entity<SkillId>
 {
-    public SkillId Id { get; private set; }
     public UserId UserId { get; private set; }
     public string Name { get; private set; }
 

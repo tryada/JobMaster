@@ -18,6 +18,15 @@ public class SkillRepository(JobMasterDbContext dbContext) : ISkillRepository
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
+    public async Task<List<SkillId>> GetValidIdsByIdsAsync(UserId userId, List<SkillId> ids)
+    {
+        return await _dbContext.Skills
+            .Where(x => x.UserId == userId)
+            .Where(x => ids.Contains(x.Id))
+            .Select(x => x.Id)
+            .ToListAsync();
+    }
+
     public async Task<List<Skill>> GetAllAsync(UserId userId)
     {
         return await _dbContext.Skills
