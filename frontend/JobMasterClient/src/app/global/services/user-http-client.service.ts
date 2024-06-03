@@ -9,12 +9,6 @@ import { AuthService } from "../../auth/services/auth.service";
 })
 export class UserHttpClient {
 
-    private userUrl = 
-        environment.apiUrl + 
-        'users/' +
-        this.authService.validAuthData.id +
-        '/';
-
     constructor(
         private httpClient: HttpClient,
         private authService: AuthService
@@ -37,6 +31,10 @@ export class UserHttpClient {
     }
 
     private combineUrl(url: string) {
-        return this.userUrl + url;
+        return environment.apiUrl + 
+            'users/' +
+            this.authService.validAuthData.id +
+            '/'
+            + url;
     }
 }
