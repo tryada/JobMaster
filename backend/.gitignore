@@ -17,3 +17,7 @@
 # Domain
 /src/JobMaster.Domain/bin
 /src/JobMaster.Domain/obj
+
+# Tests
+/tests/UnitTests/JobMaster.Application.UnitTests/bin
+/tests/UnitTests/JobMaster.Application.UnitTests/obj
