@@ -11,7 +11,7 @@ public class AdvertisementRepository(JobMasterDbContext dbContext) : IAdvertisem
 {
     private readonly JobMasterDbContext _dbContext = dbContext;
 
-    public async Task<Advertisement> GetByIdAsync(UserId userId, AdvertisementId id)
+    public async Task<Advertisement?> GetByIdAsync(UserId userId, AdvertisementId id)
     {
         return await _dbContext.Advertisements
             .Where(x => x.UserId == userId)

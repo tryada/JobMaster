@@ -6,7 +6,7 @@ namespace JobMaster.Application.Advertisements.Interfaces.Persistence;
 
 public interface IAdvertisementRepository
 {
-    Task<Advertisement> GetByIdAsync(UserId userId, AdvertisementId id);
+    Task<Advertisement?> GetByIdAsync(UserId userId, AdvertisementId id);
     Task<List<Advertisement>> GetAllAsync(UserId userId);
     Task AddAsync(Advertisement advertisement);
     Task UpdateAsync(Advertisement advertisement);
