@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../model/advertisement.model';
@@ -11,7 +11,7 @@ import { AdvertisementErrorComponent } from '../advertisement-error/advertisemen
 @Component({
   selector: 'app-advertisement-details',
   standalone: true,
-  imports: [NgFor, NgIf, SkillNamePipe, AdvertisementErrorComponent],
+  imports: [NgFor, NgIf, SkillNamePipe, AdvertisementErrorComponent, DatePipe],
   templateUrl: './advertisement-details.component.html',
   styleUrl: './advertisement-details.component.css'
 })

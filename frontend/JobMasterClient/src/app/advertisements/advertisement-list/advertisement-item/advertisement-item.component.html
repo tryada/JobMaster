@@ -1,16 +1,18 @@
-<div class="card mb-3" routerLink="/advertisements/{{advertisement.id}}" routerLinkActive="border-success" style="cursor: pointer;">
-    <div class="card-header" routerLinkActive="text-bg-success">{{advertisement.title}}
+<div class="card mb-3" routerLink="/advertisements/{{advertisement.id}}" routerLinkActive="border-secondary"
+    style="cursor: pointer;">
+    <div class="card-header" routerLinkActive="text-bg-secondary">{{advertisement.title}}
     </div>
-    <div class="card-header">{{advertisement.companyName}}</div>
+    <div class="card-header">
+        <div class="row">
+            <div class="col">{{advertisement.companyName}}</div>
+            <div class="col text-end">
+                <span class="badge text-bg-info me-1" *ngIf="advertisement.applied">Aplikowano
+                    {{advertisement.appliedDate | date:'dd-MM-YYY'}}</span>
+                <span class="badge text-bg-danger me-1" *ngIf="advertisement.rejected">Odrzucono</span>
+            </div>
+        </div>
+    </div>
     <div class="card-body">
         <div class="card-text">{{advertisement.description | truncate:250}}</div>
-    </div>
-    <div class="card-footer" *ngIf="advertisement.applied">
-        <div class="alert alert-warning" *ngIf="advertisement.applied && !advertisement.rejected">
-            Aplikowano: {{advertisement.appliedDate | date:'dd-MM-YYY'}}
-        </div>
-        <div class="alert alert-danger" *ngIf="advertisement.rejected">
-            Odrzucono
-        </div>
     </div>
 </div>

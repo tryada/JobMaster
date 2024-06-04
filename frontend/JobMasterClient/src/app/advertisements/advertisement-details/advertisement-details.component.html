@@ -2,6 +2,10 @@
     <div class="card-header">
         {{ advertisement.title }}
     </div>
+    <div class="card-header">
+        <span class="badge text-bg-info me-1" *ngIf="advertisement.applied">Aplikowano {{advertisement.appliedDate | date:'dd-MM-YYY'}}</span>
+        <span class="badge text-bg-danger me-1" *ngIf="advertisement.rejected">Odrzucono</span>
+    </div>
     <div class="card-body">
         <p class="card-text">{{ advertisement.description }}</p>
         <h5 class="card-title">Umiejętności</h5>
@@ -18,5 +22,5 @@
     </div>
 </div>
 <ng-template #noAdvertisement>
-    <app-advertisement-error></app-advertisement-error> 
+    <app-advertisement-error></app-advertisement-error>
 </ng-template>
