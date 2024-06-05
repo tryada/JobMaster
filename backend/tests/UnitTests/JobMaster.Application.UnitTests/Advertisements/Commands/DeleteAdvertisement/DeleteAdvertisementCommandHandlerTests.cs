@@ -3,7 +3,7 @@ using Moq;
 
 using JobMaster.Application.Advertisements.Commands.DeleteAdvertisement;
 using JobMaster.Application.Advertisements.Interfaces.Persistence;
-using JobMaster.Application.UnitTests.Advertisements.Commands.Shared.Utils;
+using JobMaster.Application.UnitTests.Advertisements.Utils;
 using JobMaster.Domain.Advertisements;
 using JobMaster.Domain.Advertisements.Exceptions;
 using JobMaster.Domain.Advertisements.ValueObjects;
