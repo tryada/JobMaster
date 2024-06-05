@@ -18,6 +18,8 @@ Aplikacja wspomagająca szukanie pracy.
 * Mapster
 * EntityFrameworkCore
 * FluentValidation
+* FluentAssertions
+* Moq
 
 ## Funkcjonalności
 * Dodawanie/ edycja/ usuwanie ogłoszeń
