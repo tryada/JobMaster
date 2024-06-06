@@ -2,7 +2,6 @@ using Moq;
 
 using JobMaster.Application.Advertisements.Commands.CreateAdvertisement;
 using JobMaster.Application.Advertisements.Interfaces.Persistence;
-using JobMaster.Domain.Advertisements;
 using JobMaster.Application.UnitTests.Advertisements.Commands.CreateAdvertisement.Utils;
 
 namespace JobMaster.Application.UnitTests.Advertisements.Commands.CreateAdvertisement;

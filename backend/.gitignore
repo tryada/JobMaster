@@ -21,3 +21,6 @@
 # Tests
 /tests/UnitTests/JobMaster.Application.UnitTests/bin
 /tests/UnitTests/JobMaster.Application.UnitTests/obj
+
+/tests/UnitTests/JobMaster.Infrastructure.UnitTests/bin
+/tests/UnitTests/JobMaster.Infrastructure.UnitTests/obj

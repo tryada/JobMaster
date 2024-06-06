@@ -8,6 +8,7 @@
 		{ "path": "..\\backend\\src\\JobMaster.Contracts" },
 		{ "path": "..\\backend\\src\\JobMaster.Domain" },
 		{ "path": "..\\backend\\src\\JobMaster.Infrastructure" },
+		{ "path": "..\\backend\\tests\\UnitTests\\JobMaster.Infrastructure.UnitTests" },
 	],
 	"settings": {}
 }
