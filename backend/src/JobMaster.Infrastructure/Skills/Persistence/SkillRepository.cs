@@ -46,9 +46,9 @@ public class SkillRepository(JobMasterDbContext dbContext) : ISkillRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public Task DeleteAsync(Skill skill)
+    public async Task DeleteAsync(Skill skill)
     {
         _dbContext.Skills.Remove(skill);
-        return _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync();
     }
 }

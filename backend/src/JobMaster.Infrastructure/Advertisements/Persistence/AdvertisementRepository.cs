@@ -1,6 +1,7 @@
 using JobMaster.Application.Advertisements.Interfaces.Persistence;
 using JobMaster.Domain.Advertisements;
 using JobMaster.Domain.Advertisements.ValueObjects;
+using JobMaster.Domain.Skills.ValueObjects;
 using JobMaster.Domain.Users;
 using JobMaster.Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
@@ -37,9 +38,16 @@ public class AdvertisementRepository(JobMasterDbContext dbContext) : IAdvertisem
         await _dbContext.SaveChangesAsync();
     }
 
-    public Task DeleteAsync(Advertisement advertisement)
+    public async Task DeleteAsync(Advertisement advertisement)
     {
         _dbContext.Advertisements.Remove(advertisement);
-        return _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task<bool> IsSkillUsed(SkillId skillId)
+    {
+        return await _dbContext.Advertisements
+            .Where(x => x.Skills.Any(x => x.Value == skillId.Value))
+            .AnyAsync();
     }
 }

@@ -1,5 +1,6 @@
 using JobMaster.Domain.Advertisements;
 using JobMaster.Domain.Advertisements.ValueObjects;
+using JobMaster.Domain.Skills.ValueObjects;
 using JobMaster.Domain.Users;
 
 namespace JobMaster.Application.Advertisements.Interfaces.Persistence;
@@ -11,4 +12,5 @@ public interface IAdvertisementRepository
     Task AddAsync(Advertisement advertisement);
     Task UpdateAsync(Advertisement advertisement);
     Task DeleteAsync(Advertisement advertisement);
+    Task<bool> IsSkillUsed(SkillId skillId);
 }

@@ -6,6 +6,7 @@ using JobMaster.Api.Common.Controllers;
 using JobMaster.Application.Skills.Commands.CreateSkill;
 using JobMaster.Application.Skills.Commands.UpdateSkill;
 using JobMaster.Application.Skills.Queries.ListSkills;
+using JobMaster.Application.Skills.Commands.DeleteSkill;
 using JobMaster.Contracts.Skills;
 
 namespace JobMaster.Api.Skills.Controllers;
@@ -44,5 +45,14 @@ public class SkillsController(IMediator mediator, IMapper mapper)
 
         var result = _mapper.Map<SkillResponse>(commandResult);
         return Ok(result);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(string userId, string id)
+    {
+        var command = _mapper.Map<DeleteSkillCommand>((userId, id));
+        await _mediator.Send(command);
+
+        return NoContent();
     }
 }

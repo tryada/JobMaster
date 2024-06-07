@@ -1,3 +1,4 @@
+using JobMaster.Domain.Skills.Events;
 using JobMaster.Domain.Skills.ValueObjects;
 using JobMaster.Domain.Users;
 
@@ -18,5 +19,10 @@ public partial class Skill
     public void Update(string name) 
     {
         Name = name;
+    }
+
+    public void Delete() 
+    {
+        AddDomainEvent(new SkillDeletedEvent(this));
     }
 }
