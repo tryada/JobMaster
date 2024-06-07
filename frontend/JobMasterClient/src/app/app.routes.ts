@@ -13,6 +13,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { AnonymousGuard } from './auth/guards/anonymous.guard';
+import { SkillsComponent } from './skills/skills.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -36,6 +37,11 @@ export const routes: Routes = [
                     { advertisement: advertisementResolver, skills: skillsResolver }
             }
         ]
+    },
+    {
+        path: 'skills',
+        component: SkillsComponent,
+        canActivate: [AuthGuard]
     },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
     {

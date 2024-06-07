@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, shareReplay } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { Skill } from '../models/skill.model';
 import { UserHttpClient } from '../../global/services/user-http-client.service';
@@ -10,28 +10,35 @@ import { UserHttpClient } from '../../global/services/user-http-client.service';
 })
 export class SkillService {
 
-  private data: Observable<Skill[]>;
-
   constructor(private httpClient: UserHttpClient) { }
 
   getData() {
-    if (!this.data) {
-      this.refreshData();
-    }
-    return this.data;
+    return this.httpClient
+    .get<Skill[]>('skills')
+    .pipe(
+      map((skills: Skill[]) => {
+        return skills.map(skill => {
+          return new Skill(skill.id, skill.name);
+        });
+      }),
+      catchError(() => of([]))
+    );
   }
 
-  refreshData() {
-    this.data = this.httpClient
-      .get<Skill[]>('skills')
+  addSkill(skillName: string) {
+    return this.httpClient.post<Skill>('skills', { name: skillName })
       .pipe(
-        shareReplay(),
-        map((skills: Skill[]) => {
-          return skills.map(skill => {
-            return new Skill(skill.id, skill.name);
-          });
-        }),
-        catchError(() => of([]))
+        map((skill: Skill) => {
+          return new Skill(skill.id, skill.name);
+        })
       );
+  }
+
+  updateSkill(skill: Skill) {
+    return this.httpClient.put<Skill>('skills/' + skill.id, { name: skill.name });
+  }
+
+  deleteSkill(skill: Skill) {
+    return this.httpClient.delete('skills/' + skill.id);
   }
 }

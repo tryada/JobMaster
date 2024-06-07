@@ -1,0 +1,25 @@
+<ul class="list-group mb-2">
+    <li class="list-group-item" *ngFor="let skill of skills">
+        <div class="row justify-content-between">
+            <div class="col-6" *ngIf="editedSkill !== skill; else editSkill">
+                {{skill.name}}
+            </div>
+            <div class="col-auto">
+                <button *ngIf="editedSkill !== skill; else saveButton" class="btn btn-warning"
+                    (click)="onEdit(skill)">Edycja</button>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<ng-template #editSkill>
+    <div class="col-6">
+        <input type="text" class="form-control" [(ngModel)]="editedSkillName">
+    </div>
+</ng-template>
+
+<ng-template #saveButton>
+    <button class="btn btn-success me-1" (click)="onSave()">Zapisz</button>
+    <button class="btn btn-danger me-1" (click)="onDelete()">X</button>
+    <div class="btn btn-warning" (click)="onCancel()" >Anuluj</div>
+</ng-template>
