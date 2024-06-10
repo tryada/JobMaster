@@ -13,15 +13,12 @@ using JobMaster.Contracts.Advertisements;
 namespace JobMaster.Api.Advertisements.Controllers;
 
 public class AdvertisementsController(IMediator mediator, IMapper mapper) 
-    : BaseUserController
+    : BaseUserController(mediator, mapper)
 {
-    private readonly IMediator _mediator = mediator;
-    private readonly IMapper _mapper = mapper;
-
     [HttpGet("{id}")]
-    public async Task<IActionResult> Get(string userId, string id)
+    public async Task<IActionResult> Get(string id)
     {
-        var query = _mapper.Map<GetAdvertisementQuery>((userId, id));
+        var query = _mapper.Map<GetAdvertisementQuery>((UserId, id));
         var queryResult = await _mediator.Send(query);
 
         var result = _mapper.Map<AdvertisementResponse>(queryResult);
@@ -29,9 +26,11 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get(string userId)
+    public async Task<IActionResult> Get()
     {
-        var query = _mapper.Map<ListAdvertisementsQuery>(userId);
+        var user = UserId;
+
+        var query = _mapper.Map<ListAdvertisementsQuery>(UserId);
         var queryResult = await _mediator.Send(query);
         
         var result = _mapper.Map<IEnumerable<AdvertisementResponse>>(queryResult);
@@ -39,9 +38,9 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(CreateAdvertisementRequest request, string userId)
+    public async Task<IActionResult> Post(CreateAdvertisementRequest request)
     {
-        var command = _mapper.Map<CreateAdvertisementCommand>((request, userId));
+        var command = _mapper.Map<CreateAdvertisementCommand>((request, UserId));
         var commandResult = await _mediator.Send(command);
 
         var result = _mapper.Map<AdvertisementResponse>(commandResult);
@@ -49,9 +48,9 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(UpdateAdvertisementRequest request, string userId, string id)
+    public async Task<IActionResult> Put(UpdateAdvertisementRequest request, string id)
     {
-        var command = _mapper.Map<UpdateAdvertisementCommand>((request, userId, id));
+        var command = _mapper.Map<UpdateAdvertisementCommand>((request, UserId, id));
         var commandResult = await _mediator.Send(command);
 
         var result = _mapper.Map<AdvertisementResponse>(commandResult);
@@ -59,9 +58,9 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(string userId, string id)
+    public async Task<IActionResult> Delete(string id)
     {
-        var command = _mapper.Map<DeleteAdvertisementCommand>((userId, id));
+        var command = _mapper.Map<DeleteAdvertisementCommand>((UserId, id));
         await _mediator.Send(command);
         
         return NoContent();

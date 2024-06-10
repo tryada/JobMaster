@@ -12,15 +12,13 @@ using JobMaster.Contracts.Skills;
 namespace JobMaster.Api.Skills.Controllers;
 
 public class SkillsController(IMediator mediator, IMapper mapper) 
-    : BaseUserController
+    : BaseUserController(mediator, mapper)
 {
-    private readonly IMediator _mediator = mediator;
-    private readonly IMapper _mapper = mapper;
 
     [HttpGet]
-    public async Task<IActionResult> Get(string userId)
+    public async Task<IActionResult> Get()
     {
-        var query = _mapper.Map<ListSkillsQuery>(userId);
+        var query = _mapper.Map<ListSkillsQuery>(UserId);
         var queryResult = await _mediator.Send(query);
 
         var result = _mapper.Map<IEnumerable<SkillResponse>>(queryResult);
@@ -28,9 +26,9 @@ public class SkillsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(CreateSkillRequest request, string userId)
+    public async Task<IActionResult> Post(CreateSkillRequest request)
     {
-        var command = _mapper.Map<CreateSkillCommand>((request, userId));
+        var command = _mapper.Map<CreateSkillCommand>((request, UserId));
         var commandResult = await _mediator.Send(command);
 
         var result = _mapper.Map<SkillResponse>(commandResult);
@@ -38,9 +36,9 @@ public class SkillsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(UpdateSkillRequest request, string userId, string id)
+    public async Task<IActionResult> Put(UpdateSkillRequest request, string id)
     {
-        var command = _mapper.Map<UpdateSkillCommand>((request, userId, id));
+        var command = _mapper.Map<UpdateSkillCommand>((request, UserId, id));
         var commandResult = await _mediator.Send(command);
 
         var result = _mapper.Map<SkillResponse>(commandResult);
@@ -48,9 +46,9 @@ public class SkillsController(IMediator mediator, IMapper mapper)
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(string userId, string id)
+    public async Task<IActionResult> Delete(string id)
     {
-        var command = _mapper.Map<DeleteSkillCommand>((userId, id));
+        var command = _mapper.Map<DeleteSkillCommand>((UserId, id));
         await _mediator.Send(command);
 
         return NoContent();

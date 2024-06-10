@@ -2,18 +2,14 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import { environment } from "../../../environments/environment";
-import { AuthService } from "../../auth/services/auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserHttpClient {
 
-    constructor(
-        private httpClient: HttpClient,
-        private authService: AuthService
-    ) { }
-    
+    constructor(private httpClient: HttpClient) { }
+
     get<T>(url: string) {
         return this.httpClient.get<T>(this.combineUrl(url));
     }
@@ -31,10 +27,6 @@ export class UserHttpClient {
     }
 
     private combineUrl(url: string) {
-        return environment.apiUrl + 
-            'users/' +
-            this.authService.validAuthData.id +
-            '/'
-            + url;
+        return environment.apiUrl + 'users/me/' + url;
     }
 }
