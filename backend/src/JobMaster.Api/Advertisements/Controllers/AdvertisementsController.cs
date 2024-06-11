@@ -28,8 +28,6 @@ public class AdvertisementsController(IMediator mediator, IMapper mapper)
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var user = UserId;
-
         var query = _mapper.Map<ListAdvertisementsQuery>(UserId);
         var queryResult = await _mediator.Send(query);
         
