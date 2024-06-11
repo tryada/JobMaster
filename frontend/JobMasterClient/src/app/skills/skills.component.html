@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-6">
-        <app-skill-list [skills]="skills" (skillDeleted)="onSkillDeleted($event)"></app-skill-list>
         <app-new-skill (skillAdded)="onSkillAdded($event)"></app-new-skill>
+        <app-skill-list [skills]="skills" (skillDeleted)="onSkillDeleted($event)"></app-skill-list>
     </div>
 </div>
