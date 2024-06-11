@@ -1,6 +1,7 @@
-<nav class="navbar fixed-bottom justify-content-center" style="background-color: red;">
-    <div class="col-auto">
-        <h5 class="d-inline-block aling-middle text-white" style="margin-right: 10px;">{{errorMessage}}</h5>
-        <button type="button" class="btn-close" aria-label="Close" (click)="close.emit()" ></button>
+<div class="alert-background"></div>
+<div class="alert-box">
+    <div class="alert alert-danger text-center">
+        <p>{{errorMessage}}</p>
+        <button type="button" class="btn btn-danger" (click)="close.emit()">Zamknij</button>
     </div>
-</nav>
+</div>

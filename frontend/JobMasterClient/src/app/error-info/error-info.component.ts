@@ -5,6 +5,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './error-info.component.html',
+  styleUrls: ['./error-info.component.css']
 })
 export class ErrorInfoComponent {
 
