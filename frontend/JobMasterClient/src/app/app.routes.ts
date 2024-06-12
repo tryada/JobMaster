@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
 import { AdvertisementsComponent } from './advertisements/advertisements.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdvertisementEditComponent } from './advertisements/advertisement-edit/advertisement-edit.component';
@@ -14,10 +13,10 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { AnonymousGuard } from './auth/guards/anonymous.guard';
 import { SkillsComponent } from './skills/skills.component';
+import { advertisementsStatisticsResolver } from './profile/resolvers/advertisements-statistics.resolver';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+    { path: '', redirectTo: 'profile', pathMatch: 'full' },
     {
         path: 'advertisements',
         component: AdvertisementsComponent,
@@ -43,7 +42,11 @@ export const routes: Routes = [
         component: SkillsComponent,
         canActivate: [AuthGuard]
     },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+    { 
+        path: 'profile', 
+        component: ProfileComponent,
+        resolve: { advertisementsStatistics : advertisementsStatisticsResolver },
+        canActivate: [AuthGuard]},
     {
         path: 'auth',
         component: AuthComponent,
