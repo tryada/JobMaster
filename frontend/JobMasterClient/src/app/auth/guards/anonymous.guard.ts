@@ -9,7 +9,7 @@ export const AnonymousGuard: CanActivateFn = () => {
     const router = inject(Router);
     
     if (authService.isAuthenticated) {
-        return router.createUrlTree(['/home']);
+        return router.createUrlTree(['/profile']);
     }
 
     return true;

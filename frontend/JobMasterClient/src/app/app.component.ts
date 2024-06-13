@@ -12,8 +12,7 @@ import { AuthService } from './auth/services/auth.service';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, ErrorInfoComponent, NgIf],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
 
