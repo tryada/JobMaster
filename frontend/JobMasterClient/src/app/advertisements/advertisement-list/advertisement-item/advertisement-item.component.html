@@ -1,7 +1,7 @@
 <ul class="list-group list-group-horizontal-sm mb-1" routerLink="/advertisements/{{advertisement.id}}" routerLinkActive="list-group-item-secondary" style="cursor: pointer;">
     <li class="list-group-item" style="width: 300px;">{{advertisement.title}}</li>
     <li class="list-group-item" style="width: 200px;">{{advertisement.companyName | truncate:30}}</li>
-    <li class="list-group-item">
+    <li class="list-group-item flex-fill">
         <span class="badge text-bg-info me-1" *ngIf="advertisement.applied">Aplikowano
             {{advertisement.appliedDate | date:'dd-MM-YYY'}}</span>
         <span class="badge text-bg-danger me-1" *ngIf="advertisement.rejected">Odrzucono</span>
