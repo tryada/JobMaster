@@ -6,22 +6,22 @@ using JobMaster.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
-        .AddApi()
+        .AddApi(builder.Configuration)
         .AddApplication()
-        .AddInfrastructure();
+        .AddInfrastructure(builder.Configuration);
 }
 
 var app = builder.Build();
 {
     app.UseExceptionHandler();
 
-    // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
         app.UseSwaggerUI();
     }
 
+    app.ApplyMigrations();
     app.UseCorsPolicy();
     app.UseHttpsRedirection();
 

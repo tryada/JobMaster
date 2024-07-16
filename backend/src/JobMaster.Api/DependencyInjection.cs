@@ -7,10 +7,12 @@ namespace JobMaster.Api;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApi(this IServiceCollection services)
+    public static IServiceCollection AddApi(
+        this IServiceCollection services,
+        IConfiguration configuration)
     {
         services.AddControllers();
-        services.AddCorsServices();
+        services.AddCorsServices(configuration);
 
         services.AddMapping();
 

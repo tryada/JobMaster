@@ -1,0 +1,18 @@
+name: jobmaster
+
+services:
+  jobmaster.sqlserver:
+    image: mcr.microsoft.com/mssql/server:latest
+  jobmaster.api:
+    image: ${DOCKER_REGISTRY-}jobmasterapi
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+  jobmaster.web:
+    image: ${DOCKER_REGISTRY-}jobmasterweb
+    build:
+      context: .
+      dockerfile: frontend/JobMasterClient/Dockerfile
+
+volumes:
+  jobmaster.sqlserver:
