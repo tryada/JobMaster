@@ -9,8 +9,7 @@ import { Advertisement } from '../../model/advertisement.model';
   selector: 'app-advertisement-item',
   standalone: true,
   imports: [NgIf, NgFor, TruncatePipe, DatePipe, RouterLink, RouterLinkActive],
-  templateUrl: './advertisement-item.component.html',
-  styleUrl: './advertisement-item.component.css'
+  templateUrl: './advertisement-item.component.html'
 })
 export class AdvertisementItemComponent {
 

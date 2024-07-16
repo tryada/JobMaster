@@ -3,6 +3,9 @@
         {{ advertisement.title }}
     </div>
     <div class="card-header">
+        {{ advertisement.companyName }}
+    </div>
+    <div class="card-header">
         <span class="badge text-bg-info me-1" *ngIf="advertisement.applied">Aplikowano {{advertisement.appliedDate | date:'dd-MM-YYY'}}</span>
         <span class="badge text-bg-danger me-1" *ngIf="advertisement.rejected">Odrzucono</span>
     </div>
