@@ -19,9 +19,9 @@ var app = builder.Build();
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+        app.ApplyMigrations();
     }
 
-    app.ApplyMigrations();
     app.UseCorsPolicy();
     app.UseHttpsRedirection();
 
