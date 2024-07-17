@@ -18,6 +18,7 @@ public class GetAdvertisementsStatisticsQueryHander(IAdvertisementRepository adv
         var result = new AdvertisementsStatisticResult(
             advertisements.Count,
             advertisements.Count(a => a.Applied),
+            advertisements.Count(a => a.Replied),
             advertisements.Count(a => a.Rejected));
 
         return result;

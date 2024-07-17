@@ -19,6 +19,7 @@ export class StatisticsService {
         catchError(() => of({
           count: 0,
           appliedCount: 0,
+          repliedCount: 0,
           rejectedCount: 0
         }))
       );

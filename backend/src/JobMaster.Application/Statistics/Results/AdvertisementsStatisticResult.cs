@@ -3,5 +3,6 @@ namespace JobMaster.Application.Advertisements.Queries.GetAdvertisementsStatisti
 public record AdvertisementsStatisticResult(
     int Count,
     int AppliedCount,
+    int RepliedCount,
     int RejectedCount
 );
