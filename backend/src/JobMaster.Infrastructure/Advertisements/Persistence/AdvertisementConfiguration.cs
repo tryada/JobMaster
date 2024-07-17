@@ -1,8 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
 using JobMaster.Domain.Advertisements;
 using JobMaster.Domain.Advertisements.ValueObjects;
 using JobMaster.Domain.Users;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using JobMaster.Infrastructure.Common.Persistence;
 
 namespace JobMaster.Infrastructure.Advertisements.Persistence;
 
@@ -49,12 +51,19 @@ public class AdvertisementConfiguration : IEntityTypeConfiguration<Advertisement
 
         builder.Property(advertisement => advertisement.Rejected)
             .HasDefaultValue(false);
+
+        builder.Property(advertisement => advertisement.Replied)
+            .HasDefaultValue(false);
+
+        builder.Property(advertisement => advertisement.ReplyDate)
+            .IsRequired(false)
+            .HasColumnType(ColumnTypeNames.Date);
     }
 
     private void ConfigureAdvertisementSkillIdsTable(EntityTypeBuilder<Advertisement> builder)
     {
         builder.OwnsMany(
-            advertisement => advertisement.Skills, 
+            advertisement => advertisement.Skills,
             builder =>
         {
             builder.ToTable("AdvertisementSkills");

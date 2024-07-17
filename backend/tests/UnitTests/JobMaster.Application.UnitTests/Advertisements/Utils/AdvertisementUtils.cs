@@ -16,6 +16,8 @@ public static class AdvertisementUtils
             false,
             null,
             false,
+            false, 
+            null,
             [SkillId.CreateUnique()]
         );
 
@@ -29,6 +31,8 @@ public static class AdvertisementUtils
             false,
             null,
             false,
+            false,
+            null,
             [SkillId.CreateUnique()]
         );
 }

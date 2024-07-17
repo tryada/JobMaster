@@ -69,6 +69,22 @@
                         class="text-danger">Data aplikacji jest wymagana</span>
                 </div>
             </div>
+            <div class="row align-items-center">
+                <div class="col-4 mb-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="replied" formControlName="replied">
+                        <label class="form-check-label" for="replied">Odpowiedź</label>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+                <div class="col mb-3">
+                    <input type="date" class="form-control" formControlName="replyDate"
+                        [required]="advertisementForm.get('replied').value === true">
+                        <span
+                        *ngIf="advertisementForm.get('replied').value === true && advertisementForm.get('replyDate').invalid"
+                        class="text-danger">Data odpowiedzi jest wymagana</span>
+                </div>
+            </div>
             <div class="mb-3">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="rejected" formControlName="rejected">

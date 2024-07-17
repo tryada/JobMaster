@@ -18,6 +18,8 @@ public partial class Advertisement : Entity<AdvertisementId>
     public bool Applied { get; private set; }
     public DateTime? AppliedDate { get; private set; }
     public bool Rejected { get; private set; }
+    public bool Replied { get; private set; }
+    public DateTime? ReplyDate { get; private set; }
     
     private Advertisement(
         UserId userId,
@@ -29,6 +31,8 @@ public partial class Advertisement : Entity<AdvertisementId>
         bool applied,
         DateTime? appliedDate,
         bool rejected,
+        bool replied,
+        DateTime? replyDate,
         List<SkillId> skillIds)
     {
         UserId = userId;
@@ -40,6 +44,8 @@ public partial class Advertisement : Entity<AdvertisementId>
         Applied = applied;
         AppliedDate = appliedDate;
         Rejected = rejected;
+        Replied = replied;
+        ReplyDate = replyDate;
         _skills.AddRange(skillIds);
     }
 

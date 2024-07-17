@@ -8,6 +8,8 @@ export class Advertisement {
     applied: boolean
     appliedDate: Date
     rejected: boolean
+    replied: boolean
+    replyDate: Date
 
     constructor(
         id: string,
@@ -18,7 +20,9 @@ export class Advertisement {
         skills: string[],
         applied: boolean,
         applyDate: Date,
-        rejected: boolean) {
+        rejected: boolean,
+        replied: boolean,
+        replyDate: Date) {
         this.id = id;
         this.title = title;
         this.companyName = companyName;
@@ -28,5 +32,7 @@ export class Advertisement {
         this.applied = applied;
         this.appliedDate = applyDate;
         this.rejected = rejected;
+        this.replied = replied;
+        this.replyDate = replyDate;
     }
 }

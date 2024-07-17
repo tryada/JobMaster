@@ -10,5 +10,7 @@ public record AdvertisementResponse(
     string Url,
     bool Applied,
     DateTime? AppliedDate,
-    bool Rejected
+    bool Rejected,
+    bool Replied,
+    DateTime? ReplyDate
 );

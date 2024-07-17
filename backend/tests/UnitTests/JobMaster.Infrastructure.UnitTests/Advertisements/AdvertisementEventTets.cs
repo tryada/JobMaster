@@ -55,7 +55,7 @@ public class AdvertisementEventTests : IDisposable
         await _context.Advertisements.AddAsync(advertisement);
         await _context.SaveChangesAsync();
         _mediator.Invocations.Clear();
-        advertisement.Update("New Title", "New Company", "New Description", "New Url", true, null, true, []);
+        advertisement.Update("New Title", "New Company", "New Description", "New Url", true, DateTime.Now, true, false, null, []);
         var domainEvents = advertisement.DomainEvents.ToList();
 
         // Act

@@ -56,7 +56,9 @@ export class AdvertisementEditComponent implements OnInit {
       'url': new FormControl(data.url, Validators.required),
       'applied': new FormControl(data.applied),
       'appliedDate': new FormControl(data.appliedDate),
-      'rejected': new FormControl(data.rejected)
+      'rejected': new FormControl(data.rejected),
+      'replied': new FormControl(data.replied),
+      'replyDate': new FormControl(data.replyDate)
     });
   }
 
@@ -74,7 +76,9 @@ export class AdvertisementEditComponent implements OnInit {
         'url': this.editModel.url,
         'applied': this.editModel.applied,
         'appliedDate': this.editModel.appliedDate ? formatDate(this.editModel.appliedDate, 'yyyy-MM-dd', 'en-US') : '',
-        'rejected': this.editModel.rejected
+        'rejected': this.editModel.rejected,
+        'replied': this.editModel.replied,
+        'replyDate': this.editModel.replyDate ? formatDate(this.editModel.replyDate, 'yyyy-MM-dd', 'en-US') : ''
       }
     } else {
       return {
@@ -85,7 +89,9 @@ export class AdvertisementEditComponent implements OnInit {
         'url': '',
         'applied': false,
         'appliedDate': '',
-        'rejected': false
+        'rejected': false,
+        'replied': false,
+        'replyDate': ''
       }
     }
   }
@@ -117,7 +123,9 @@ export class AdvertisementEditComponent implements OnInit {
       this.getSkills(),
       this.advertisementForm.value['applied'],
       this.advertisementForm.value['appliedDate'] || null,
-      this.advertisementForm.value['rejected']
+      this.advertisementForm.value['rejected'],
+      this.advertisementForm.value['replied'],
+      this.advertisementForm.value['replyDate'] || null
     );
 
     this.advertisementService.saveAdvertisement(advertisementData);

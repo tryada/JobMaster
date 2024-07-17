@@ -8,5 +8,7 @@ public record UpdateAdvertisementRequest(
     string Url,
     bool Applied,
     DateTime? AppliedDate,
-    bool Rejected
+    bool Rejected,
+    bool Replied,
+    DateTime? ReplyDate
 );

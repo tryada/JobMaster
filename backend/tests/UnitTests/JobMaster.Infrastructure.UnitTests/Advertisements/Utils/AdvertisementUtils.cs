@@ -17,7 +17,8 @@ public static class AdvertisementUtils
             false,
             null,
             false,
+            false, 
+            null,
             [SkillId.CreateUnique()]);
     }
-
 }

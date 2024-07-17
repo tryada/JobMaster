@@ -17,6 +17,8 @@ public class UpdateAdvertisementCommandBuilder
     private bool _applied;
     private DateTime? _appliedDate;
     private bool _rejected;
+    private bool _replied;
+    private DateTime _replyDate;
 
     public UpdateAdvertisementCommandBuilder(bool setDefaultValues = true)
     {
@@ -36,6 +38,8 @@ public class UpdateAdvertisementCommandBuilder
         _applied = false;
         _appliedDate = null;
         _rejected = false;
+        _replied = false;
+        _replyDate = DateTime.Now;
     }
 
     public UpdateAdvertisementCommandBuilder WithUserId(UserId userId)
@@ -98,6 +102,18 @@ public class UpdateAdvertisementCommandBuilder
         return this;
     }
 
+    public UpdateAdvertisementCommandBuilder WithReplied(bool replied)
+    {
+        _replied = replied;
+        return this;
+    }
+
+    public UpdateAdvertisementCommandBuilder WithReplyDate(DateTime replyDate)
+    {
+        _replyDate = replyDate;
+        return this;
+    }
+
     public UpdateAdvertisementCommand Build()
     {
         return new UpdateAdvertisementCommand(
@@ -110,6 +126,8 @@ public class UpdateAdvertisementCommandBuilder
             Url: _url,
             Applied: _applied,
             AppliedDate: _appliedDate,
-            Rejected: _rejected);
+            Rejected: _rejected,
+            Replied: _replied,
+            ReplyDate: _replyDate);
     }
 }

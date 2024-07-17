@@ -122,7 +122,7 @@ public class AdvertisementRepositoryTests : IDisposable
         await _context.Advertisements.AddAsync(advertisement);
         await _context.SaveChangesAsync();
 
-        advertisement.Update("New Title", "New Company", "New Description", "New Url", true, null, true, [SkillId.CreateUnique()]);
+        advertisement.Update("New Title", "New Company", "New Description", "New Url", true, DateTime.Now, true, false, null, [SkillId.CreateUnique()]);
 
         // Act
         await _repository.UpdateAsync(advertisement);

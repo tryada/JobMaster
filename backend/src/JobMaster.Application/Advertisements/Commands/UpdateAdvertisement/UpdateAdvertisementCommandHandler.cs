@@ -27,6 +27,8 @@ public class UpdateAdvertisementCommandHandler : IRequestHandler<UpdateAdvertise
             request.Applied,
             request.AppliedDate,
             request.Rejected,
+            request.Replied,
+            request.ReplyDate,
             request.Skills);
 
         await _advertisementRepository.UpdateAsync(advertisement);

@@ -3,6 +3,7 @@
     <li class="list-group-item">{{advertisement.companyName | truncate:35}}</li>
     <li class="list-group-item" style="width: 110px;">
         <span class="badge text-bg-info me-1" *ngIf="advertisement.applied">{{advertisement.appliedDate | date:'dd-MM-YYY'}}</span>
+        <span class="badge text-bg-warning me-1" *ngIf="advertisement.replied">{{advertisement.replyDate | date:'dd-MM-YYY'}}</span>
         <span class="badge text-bg-danger me-1" *ngIf="advertisement.rejected">Odrzucono</span>
     </li>
 </ul>

@@ -51,6 +51,8 @@ public class CreateAdvertisementCommandBuilder
             _url,
             false,
             null,
-            false);
+            false,
+            false,
+            null);
     }
 }
