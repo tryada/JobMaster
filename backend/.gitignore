@@ -24,3 +24,7 @@
 
 /tests/UnitTests/JobMaster.Infrastructure.UnitTests/bin
 /tests/UnitTests/JobMaster.Infrastructure.UnitTests/obj
+
+# VS
+/.vs/
+/src/JobMaster.Api/JobMaster.Api.csproj.user
