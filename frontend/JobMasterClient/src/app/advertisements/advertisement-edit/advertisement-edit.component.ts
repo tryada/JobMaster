@@ -58,7 +58,7 @@ export class AdvertisementEditComponent implements OnInit {
       'appliedDate': new FormControl(data.appliedDate),
       'rejected': new FormControl(data.rejected),
       'replied': new FormControl(data.replied),
-      'replyDate': new FormControl(data.replyDate)
+      'repliedDate': new FormControl(data.repliedDate)
     });
   }
 
@@ -78,7 +78,7 @@ export class AdvertisementEditComponent implements OnInit {
         'appliedDate': this.editModel.appliedDate ? formatDate(this.editModel.appliedDate, 'yyyy-MM-dd', 'en-US') : '',
         'rejected': this.editModel.rejected,
         'replied': this.editModel.replied,
-        'replyDate': this.editModel.replyDate ? formatDate(this.editModel.replyDate, 'yyyy-MM-dd', 'en-US') : ''
+        'repliedDate': this.editModel.repliedDate ? formatDate(this.editModel.repliedDate, 'yyyy-MM-dd', 'en-US') : ''
       }
     } else {
       return {
@@ -91,7 +91,7 @@ export class AdvertisementEditComponent implements OnInit {
         'appliedDate': '',
         'rejected': false,
         'replied': false,
-        'replyDate': ''
+        'repliedDate': ''
       }
     }
   }
@@ -125,7 +125,7 @@ export class AdvertisementEditComponent implements OnInit {
       this.advertisementForm.value['appliedDate'] || null,
       this.advertisementForm.value['rejected'],
       this.advertisementForm.value['replied'],
-      this.advertisementForm.value['replyDate'] || null
+      this.advertisementForm.value['repliedDate'] || null
     );
 
     this.advertisementService.saveAdvertisement(advertisementData);

@@ -4,6 +4,7 @@ using JobMaster.Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobMaster.Infrastructure.Migrations
 {
     [DbContext(typeof(JobMasterDbContext))]
-    partial class JobMasterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240718085041_AppliedDateColumnType")]
+    partial class AppliedDateColumnType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

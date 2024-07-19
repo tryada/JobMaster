@@ -18,7 +18,7 @@ public class UpdateAdvertisementCommandBuilder
     private DateTime? _appliedDate;
     private bool _rejected;
     private bool _replied;
-    private DateTime _replyDate;
+    private DateTime? _repliedDate;
 
     public UpdateAdvertisementCommandBuilder(bool setDefaultValues = true)
     {
@@ -39,7 +39,7 @@ public class UpdateAdvertisementCommandBuilder
         _appliedDate = null;
         _rejected = false;
         _replied = false;
-        _replyDate = DateTime.Now;
+        _repliedDate = null;
     }
 
     public UpdateAdvertisementCommandBuilder WithUserId(UserId userId)
@@ -108,9 +108,9 @@ public class UpdateAdvertisementCommandBuilder
         return this;
     }
 
-    public UpdateAdvertisementCommandBuilder WithReplyDate(DateTime replyDate)
+    public UpdateAdvertisementCommandBuilder WithRepliedDate(DateTime repliedDate)
     {
-        _replyDate = replyDate;
+        _repliedDate = repliedDate;
         return this;
     }
 
@@ -128,6 +128,6 @@ public class UpdateAdvertisementCommandBuilder
             AppliedDate: _appliedDate,
             Rejected: _rejected,
             Replied: _replied,
-            ReplyDate: _replyDate);
+            RepliedDate: _repliedDate);
     }
 }

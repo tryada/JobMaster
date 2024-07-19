@@ -17,5 +17,5 @@ public record CreateAdvertisementCommand(
     DateTime? AppliedDate,
     bool Rejected,
     bool Replied,
-    DateTime? ReplyDate) 
+    DateTime? RepliedDate) 
     : IRequest<Advertisement>, IAdvertisementValidationFields;

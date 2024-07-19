@@ -12,5 +12,5 @@ public record AdvertisementResponse(
     DateTime? AppliedDate,
     bool Rejected,
     bool Replied,
-    DateTime? ReplyDate
+    DateTime? RepliedDate
 );

@@ -17,7 +17,7 @@ public partial class Advertisement
         DateTime? appliedDate,
         bool rejected,
         bool replied,
-        DateTime? replyDate,
+        DateTime? repliedDate,
         List<SkillId> skillIds)
     {
         var advertisement = new Advertisement(
@@ -31,7 +31,7 @@ public partial class Advertisement
             appliedDate,
             rejected,
             replied,
-            replyDate,
+            repliedDate,
             skillIds);
 
         advertisement.AddDomainEvent(new AdvertisementCreatedEvent(advertisement));
@@ -48,7 +48,7 @@ public partial class Advertisement
         DateTime? appliedDate,
         bool rejected,
         bool replied,
-        DateTime? replyDate,
+        DateTime? repliedDate,
         List<SkillId> skillIds)
     {
         Title = title;
@@ -59,7 +59,7 @@ public partial class Advertisement
         AppliedDate = appliedDate;
         Rejected = rejected;
         Replied = replied;
-        ReplyDate = replyDate;
+        RepliedDate = repliedDate;
 
         _skills.Clear();
         _skills.AddRange(skillIds);

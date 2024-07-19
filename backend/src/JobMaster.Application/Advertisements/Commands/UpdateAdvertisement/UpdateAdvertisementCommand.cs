@@ -19,5 +19,5 @@ public record UpdateAdvertisementCommand(
     DateTime? AppliedDate,
     bool Rejected,
     bool Replied,
-    DateTime? ReplyDate) 
+    DateTime? RepliedDate) 
     : IRequest<Advertisement>, IAdvertisementValidationFields;

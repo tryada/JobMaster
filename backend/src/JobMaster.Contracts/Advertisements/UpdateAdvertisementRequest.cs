@@ -10,5 +10,5 @@ public record UpdateAdvertisementRequest(
     DateTime? AppliedDate,
     bool Rejected,
     bool Replied,
-    DateTime? ReplyDate
+    DateTime? RepliedDate
 );

@@ -25,7 +25,7 @@ public class CreateAdvertisementCommandHandler : IRequestHandler<CreateAdvertise
             request.AppliedDate,
             request.Rejected,
             request.Replied,
-            request.ReplyDate,
+            request.RepliedDate,
             request.Skills);
 
         await _advertisementRepository.AddAsync(advertisement);

@@ -47,7 +47,8 @@ public class AdvertisementConfiguration : IEntityTypeConfiguration<Advertisement
             .HasDefaultValue(false);
 
         builder.Property(advertisement => advertisement.AppliedDate)
-            .IsRequired(false);
+            .IsRequired(false)
+            .HasColumnType(ColumnTypeNames.Date);
 
         builder.Property(advertisement => advertisement.Rejected)
             .HasDefaultValue(false);
@@ -55,7 +56,7 @@ public class AdvertisementConfiguration : IEntityTypeConfiguration<Advertisement
         builder.Property(advertisement => advertisement.Replied)
             .HasDefaultValue(false);
 
-        builder.Property(advertisement => advertisement.ReplyDate)
+        builder.Property(advertisement => advertisement.RepliedDate)
             .IsRequired(false)
             .HasColumnType(ColumnTypeNames.Date);
     }

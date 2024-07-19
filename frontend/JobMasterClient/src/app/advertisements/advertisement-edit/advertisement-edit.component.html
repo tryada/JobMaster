@@ -78,10 +78,10 @@
                 </div>
                 <div class="col-1"></div>
                 <div class="col mb-3">
-                    <input type="date" class="form-control" formControlName="replyDate"
+                    <input type="date" class="form-control" formControlName="repliedDate"
                         [required]="advertisementForm.get('replied').value === true">
                         <span
-                        *ngIf="advertisementForm.get('replied').value === true && advertisementForm.get('replyDate').invalid"
+                        *ngIf="advertisementForm.get('replied').value === true && advertisementForm.get('repliedDate').invalid"
                         class="text-danger">Data odpowiedzi jest wymagana</span>
                 </div>
             </div>

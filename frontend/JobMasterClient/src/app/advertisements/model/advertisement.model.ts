@@ -9,7 +9,7 @@ export class Advertisement {
     appliedDate: Date
     rejected: boolean
     replied: boolean
-    replyDate: Date
+    repliedDate: Date
 
     constructor(
         id: string,
@@ -22,7 +22,7 @@ export class Advertisement {
         applyDate: Date,
         rejected: boolean,
         replied: boolean,
-        replyDate: Date) {
+        repliedDate: Date) {
         this.id = id;
         this.title = title;
         this.companyName = companyName;
@@ -33,6 +33,6 @@ export class Advertisement {
         this.appliedDate = applyDate;
         this.rejected = rejected;
         this.replied = replied;
-        this.replyDate = replyDate;
+        this.repliedDate = repliedDate;
     }
 }
